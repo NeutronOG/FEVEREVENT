@@ -37,7 +37,7 @@ export function InvitationGate({ invitation, onEnter }: InvitationGateProps) {
 
       <div className="gate-action">
         <HoldButton onComplete={onEnter} />
-        <p>PRESS &amp; HOLD TO CREATE YOUR INVITATION</p>
+        <p>PRESS &amp; HOLD FOR 1 SECOND TO CREATE YOUR INVITATION</p>
       </div>
 
       <footer className="gate-footer">
