@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { LoadingExperience } from "./LoadingExperience";
 import { InvitationGate } from "./InvitationGate";
@@ -106,7 +107,14 @@ export function InvitationExperience({
         >
           <header className="experience-header">
             <a aria-label="FEVER invitation top" href="#top">
-              FEVER
+              <Image
+                alt="FEVER"
+                className="experience-logo"
+                height={150}
+                priority
+                src="/brand/fever-logo-mark.png"
+                width={567}
+              />
             </a>
             <span>
               HONORED GUESTS · {String(visitorCount).padStart(4, "0")}

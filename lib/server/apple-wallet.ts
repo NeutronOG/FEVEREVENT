@@ -66,11 +66,16 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
   const background = await readFile(
     path.join(process.cwd(), "public", "wallet", "fever-pass-background.png"),
   );
+  const logo = await readFile(
+    path.join(process.cwd(), "public", "brand", "fever-logo-mark.png"),
+  );
   const pass = new PKPass(
     {
       "background.png": background,
       "icon.png": icon,
       "icon@2x.png": icon,
+      "logo.png": logo,
+      "logo@2x.png": logo,
     },
     passSigningCertificates(),
     {
@@ -80,7 +85,7 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
       foregroundColor: "rgb(247, 241, 229)",
       formatVersion: 1,
       labelColor: "rgb(255, 157, 32)",
-      logoText: "FEVER",
+      logoText: "HONORED GUEST",
       organizationName: "FEVER",
       passTypeIdentifier,
       serialNumber,
@@ -91,31 +96,38 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
 
   pass.type = "generic";
   pass.headerFields.push({
-    key: "membership",
-    label: "MEMBERSHIP",
-    value: `MEMBER ${guest.memberNumber}`,
+    key: "edition",
+    label: "FEVER / PRIVATE EDITION",
+    value: `∞  MEMBER ${guest.memberNumber}`,
   });
   pass.primaryFields.push({
-    key: "name",
-    label: "FEVER",
+    key: "honoredGuest",
+    label: "THIS NIGHT IS YOURS",
     value: `${guest.first_name} ${guest.last_name}`.toUpperCase(),
   });
   pass.secondaryFields.push(
-    { key: "access", label: "ACCESS", value: "LIFETIME VIP" },
-    { key: "guest", label: "STATUS", value: "HONORED GUEST" },
+    { key: "status", label: "YOUR STATUS", value: "HONORED GUEST" },
+    { key: "access", label: "AFTER DARK", value: "LIFETIME VIP" },
   );
   pass.auxiliaryFields.push({
-    key: "shots",
-    label: "PRIVILEGE",
-    value: "2 FREE SHOTS · EVERY VISIT",
+    key: "ritual",
+    label: "YOUR RITUAL",
+    value: "2 SHOTS · EVERY VISIT",
   });
   pass.backFields.push(
-    { key: "email", label: "HONORED GUEST", value: guest.email },
+    {
+      key: "note",
+      label: "A NOTE FROM FEVER",
+      value: "Some invitations are earned. This one is yours.",
+    },
     {
       key: "privileges",
-      label: "PRIVILEGES",
-      value: "Lifetime VIP Access · 2 complimentary shots per visit",
+      label: "YOUR PRIVILEGES",
+      value:
+        "Lifetime VIP Access to FEVER\n2 complimentary shots every time you visit",
     },
+    { key: "member", label: "MEMBER NUMBER", value: guest.memberNumber },
+    { key: "email", label: "CARD HOLDER", value: guest.email },
   );
 
   pass.setBarcodes({
