@@ -18,6 +18,7 @@ import type { Invitation } from "@/data/invitations";
 import { useAmbientAudio } from "@/hooks/useAmbientAudio";
 import { useDevicePerformance } from "@/hooks/useDevicePerformance";
 import { useInvitationState } from "@/hooks/useInvitationState";
+import { useGlobalVisitorCount } from "@/hooks/useGlobalVisitorCount";
 
 export function InvitationExperience({
   invitation,
@@ -30,6 +31,7 @@ export function InvitationExperience({
   const { accepted, accept } = useInvitationState(invitation.token);
   const audio = useAmbientAudio();
   const lowPower = useDevicePerformance();
+  const visitorCount = useGlobalVisitorCount();
 
   useEffect(() => {
     const timer = window.setTimeout(() => setPhase("gate"), 1650);
@@ -72,7 +74,9 @@ export function InvitationExperience({
             <a aria-label="FEVER invitation top" href="#top">
               FEVER
             </a>
-            <span>HONORED GUEST · {invitation.memberNumber}</span>
+            <span>
+              HONORED GUESTS · {String(visitorCount).padStart(4, "0")}
+            </span>
           </header>
           <div id="top" />
           <RecognitionSequence />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InvitationExperience } from "@/components/experience/InvitationExperience";
-import { getInvitation } from "@/data/invitations";
+import { getInvitation, invitations } from "@/data/invitations";
 
 type InvitationPageProps = {
   params: Promise<{ token: string }>;
@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     nocache: true,
   },
 };
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return Object.keys(invitations).map((token) => ({ token }));
+}
 
 export default async function InvitationPage({ params }: InvitationPageProps) {
   const { token } = await params;
