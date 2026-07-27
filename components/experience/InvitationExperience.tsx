@@ -14,9 +14,7 @@ import { AnniversarySequence } from "./AnniversarySequence";
 import { InvitationClosing } from "./InvitationClosing";
 import { AcceptedInvitation } from "./AcceptedInvitation";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
-import { SoundToggle } from "@/components/ui/SoundToggle";
 import type { Invitation } from "@/data/invitations";
-import { useAmbientAudio } from "@/hooks/useAmbientAudio";
 import { useDevicePerformance } from "@/hooks/useDevicePerformance";
 import { useInvitationState } from "@/hooks/useInvitationState";
 import { useGlobalVisitorCount } from "@/hooks/useGlobalVisitorCount";
@@ -35,7 +33,6 @@ export function InvitationExperience({
   const [registeredGuest, setRegisteredGuest] =
     useState<RegisteredGuest | null>(null);
   const { accepted, accept } = useInvitationState(invitation.token);
-  const audio = useAmbientAudio();
   const lowPower = useDevicePerformance();
   const visitorCount = useGlobalVisitorCount();
 
@@ -52,7 +49,6 @@ export function InvitationExperience({
     const guest = await registerGuest(invitation.token, details);
     setGuestDetails(details);
     setRegisteredGuest(guest);
-    audio.start();
     setPhase("recognition");
   };
 
@@ -152,12 +148,6 @@ export function InvitationExperience({
           </footer>
         </motion.div>
       )}
-
-      <SoundToggle
-        enabled={audio.enabled}
-        onToggle={audio.toggle}
-        visible={audio.started}
-      />
     </main>
   );
 }

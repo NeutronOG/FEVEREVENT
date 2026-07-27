@@ -77,6 +77,12 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
   const pass = new PKPass(
     {
       "background.png": background,
+      "background@2x.png": await readFile(
+        path.join(process.cwd(), "public", "wallet", "fever-pass-background@2x.png"),
+      ),
+      "background@3x.png": await readFile(
+        path.join(process.cwd(), "public", "wallet", "fever-pass-background@3x.png"),
+      ),
       "icon.png": icon,
       "icon@2x.png": icon,
       "logo.png": logo,
@@ -85,7 +91,7 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
     passSigningCertificates(),
     {
       authenticationToken: guest.qr_token,
-      backgroundColor: "rgb(0, 51, 66)",
+      backgroundColor: "rgb(0, 132, 151)",
       description: "FEVER Honored Guest Card",
       foregroundColor: "rgb(247, 241, 229)",
       formatVersion: 1,

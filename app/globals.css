@@ -1494,27 +1494,6 @@ a:focus-visible {
   letter-spacing: 0.2em;
 }
 
-.sound-toggle {
-  align-items: center;
-  backdrop-filter: blur(14px);
-  background: rgba(4, 44, 56, 0.68);
-  border: 1px solid var(--hairline);
-  border-radius: 999px;
-  bottom: max(1rem, env(safe-area-inset-bottom));
-  display: flex;
-  gap: 0.5rem;
-  left: var(--page-pad);
-  min-height: 44px;
-  padding: 0 0.9rem;
-  position: fixed;
-  z-index: 60;
-}
-
-.sound-toggle span {
-  font-size: 0.48rem;
-  letter-spacing: 0.14em;
-}
-
 .invalid-invitation {
   align-items: center;
   background:
