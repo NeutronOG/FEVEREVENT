@@ -43,6 +43,11 @@ export function AcceptedInvitation({
     link.click();
   };
 
+  const addToAppleWallet = () => {
+    if (!guest) return;
+    window.location.assign(`/api/wallet/apple/${guest.id}`);
+  };
+
   return (
     <section className="accepted-state" id="accepted">
       <div className="accepted-check">
@@ -80,15 +85,10 @@ export function AcceptedInvitation({
         </MagneticButton>
         <MagneticButton
           aria-label="Apple Wallet pass"
-          onClick={() =>
-            window.alert(
-              guest?.walletPassStatus === "issued"
-                ? "Your Apple Wallet pass is ready."
-                : "Your Apple Wallet pass is being prepared securely.",
-            )
-          }
+          disabled={!guest}
+          onClick={addToAppleWallet}
         >
-          <WalletCards size={15} /> ADD TO WALLET
+          <WalletCards size={15} /> ADD TO APPLE WALLET
         </MagneticButton>
       </div>
 
