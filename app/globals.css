@@ -498,10 +498,15 @@ a:focus-visible {
 
 .experience-header a {
   color: var(--warm-white);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.3em;
+  display: inline-flex;
+  line-height: 0;
   text-decoration: none;
+}
+
+.experience-logo {
+  display: block;
+  height: auto;
+  width: clamp(4.8rem, 9vw, 6.6rem);
 }
 
 .experience-header span {
@@ -740,11 +745,11 @@ a:focus-visible {
   transform: rotate(10deg);
 }
 
-.card-brand {
-  font-size: clamp(0.62rem, 2vw, 0.82rem);
-  font-weight: 600;
-  letter-spacing: 0.32em;
+.card-brand-logo {
+  display: block;
+  height: auto;
   position: relative;
+  width: clamp(5.25rem, 17vw, 7.6rem);
 }
 
 .card-title {
@@ -805,7 +810,7 @@ a:focus-visible {
   justify-content: center;
 }
 
-.vip-card-back .card-brand {
+.vip-card-back .card-brand-logo {
   left: clamp(1.2rem, 5vw, 2rem);
   position: absolute;
   top: clamp(1.2rem, 5vw, 2rem);

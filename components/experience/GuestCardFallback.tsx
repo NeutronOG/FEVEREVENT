@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Invitation } from "@/data/invitations";
 
 type CardFaceProps = {
@@ -15,7 +16,14 @@ export function GuestCardFallback({
     return (
       <div className="vip-card vip-card-back" id={id}>
         <div className="card-noise" />
-        <span className="card-brand">FEVER</span>
+        <Image
+          alt="FEVER"
+          className="card-brand-logo"
+          height={150}
+          priority
+          src="/brand/fever-logo-mark.png"
+          width={567}
+        />
         <div className="card-back-copy">
           <p>LIFETIME VIP ACCESS</p>
           <strong>
@@ -33,7 +41,14 @@ export function GuestCardFallback({
     <div className="vip-card vip-card-front" id={id}>
       <div className="card-noise" />
       <div className="card-hologram" />
-      <span className="card-brand">FEVER</span>
+      <Image
+        alt="FEVER"
+        className="card-brand-logo"
+        height={150}
+        priority
+        src="/brand/fever-logo-mark.png"
+        width={567}
+      />
       <div className="card-title">
         <small>HONORED</small>
         <strong>GUEST</strong>
