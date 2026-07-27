@@ -66,7 +66,9 @@ function passSigningCertificates() {
 export async function createAppleWalletPass(guest: HonoredGuest) {
   const teamIdentifier = required("APPLE_TEAM_ID");
   const passTypeIdentifier = required("APPLE_PASS_TYPE_IDENTIFIER");
-  const serialNumber = `FEVER-${guest.id}`;
+  // A new serial makes Wallet install this corrected pass instead of reusing
+  // the earlier version that still contained the HONORED GUEST header.
+  const serialNumber = `FEVER-${guest.id}-guest`;
   const icon = await readFile(path.join(process.cwd(), "public", "favicon.png"));
   const background = await readFile(
     path.join(process.cwd(), "public", "wallet", "fever-pass-background.png"),
