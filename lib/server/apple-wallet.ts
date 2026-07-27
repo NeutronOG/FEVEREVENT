@@ -9,6 +9,7 @@ type HonoredGuest = {
   last_name: string;
   email: string;
   qr_token: string;
+  memberNumber: string;
 };
 
 function required(name: string) {
@@ -62,8 +63,12 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
   const passTypeIdentifier = required("APPLE_PASS_TYPE_IDENTIFIER");
   const serialNumber = `FEVER-${guest.id}`;
   const icon = await readFile(path.join(process.cwd(), "public", "favicon.png"));
+  const background = await readFile(
+    path.join(process.cwd(), "public", "wallet", "fever-pass-background.png"),
+  );
   const pass = new PKPass(
     {
+      "background.png": background,
       "icon.png": icon,
       "icon@2x.png": icon,
     },
@@ -88,7 +93,7 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
   pass.headerFields.push({
     key: "membership",
     label: "MEMBERSHIP",
-    value: "HONORED GUEST",
+    value: `MEMBER ${guest.memberNumber}`,
   });
   pass.primaryFields.push({
     key: "name",
@@ -97,8 +102,13 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
   });
   pass.secondaryFields.push(
     { key: "access", label: "ACCESS", value: "LIFETIME VIP" },
-    { key: "shots", label: "PRIVILEGE", value: "2 FREE SHOTS" },
+    { key: "guest", label: "STATUS", value: "HONORED GUEST" },
   );
+  pass.auxiliaryFields.push({
+    key: "shots",
+    label: "PRIVILEGE",
+    value: "2 FREE SHOTS · EVERY VISIT",
+  });
   pass.backFields.push(
     { key: "email", label: "HONORED GUEST", value: guest.email },
     {

@@ -1,5 +1,6 @@
 import { createAppleWalletPass } from "@/lib/server/apple-wallet";
 import { getSupabaseAdmin } from "@/lib/server/supabase";
+import { getInvitation } from "@/data/invitations";
 
 export const runtime = "nodejs";
 
@@ -13,14 +14,22 @@ export async function GET(_: Request, { params }: RouteContext) {
     const supabase = getSupabaseAdmin();
     const { data: guest, error } = await supabase
       .from("honored_guests")
-      .select("id, first_name, last_name, email, qr_token")
+      .select("id, first_name, last_name, email, qr_token, invitation_token")
       .eq("id", guestId)
       .maybeSingle();
 
     if (error) throw error;
     if (!guest) return Response.json({ error: "Invitation not found." }, { status: 404 });
 
-    const walletPass = await createAppleWalletPass(guest);
+    const invitation = getInvitation(guest.invitation_token);
+    if (!invitation) {
+      return Response.json({ error: "Invitation not found." }, { status: 404 });
+    }
+
+    const walletPass = await createAppleWalletPass({
+      ...guest,
+      memberNumber: invitation.memberNumber,
+    });
     const update = await supabase
       .from("honored_guests")
       .update({
