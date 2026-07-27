@@ -1,0 +1,1773 @@
+@import "tailwindcss";
+
+:root {
+  --black: #061c26;
+  --charcoal: #083140;
+  --warm-white: #f7f1e5;
+  --muted-white: #b7d3d4;
+  --amber: #ff9d20;
+  --dark-gold: #e66f16;
+  --hairline: rgba(247, 241, 229, 0.24);
+  --page-pad: clamp(1.25rem, 5vw, 4rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--black);
+  color: var(--warm-white);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(
+      circle at 75% 5%,
+      rgba(255, 157, 32, 0.18),
+      transparent 30%
+    ),
+    #062c39 url("/media/sistek-fever-background.webp") center top / cover fixed;
+  color: var(--warm-white);
+  font-family: var(--font-sans), "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  min-width: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-x: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--black);
+}
+
+.fever-experience {
+  background:
+    linear-gradient(180deg, rgba(3, 29, 40, 0.2), rgba(3, 25, 35, 0.7)),
+    url("/media/sistek-fever-background.webp") center top / cover fixed;
+  min-height: 100svh;
+  overflow: visible;
+  position: relative;
+  touch-action: pan-y;
+}
+
+.experience-content {
+  margin: 0 auto;
+  max-width: 1180px;
+  overflow: visible;
+  position: relative;
+}
+
+.brand-mark {
+  color: var(--warm-white);
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: 0.36em;
+}
+
+.grain-overlay {
+  background-image:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(255, 255, 255, 0.8) 0 0.5px,
+      transparent 0.8px
+    ),
+    radial-gradient(
+      circle at 72% 64%,
+      rgba(255, 255, 255, 0.65) 0 0.45px,
+      transparent 0.8px
+    ),
+    radial-gradient(
+      circle at 42% 82%,
+      rgba(255, 255, 255, 0.55) 0 0.4px,
+      transparent 0.75px
+    );
+  background-size:
+    5px 7px,
+    9px 11px,
+    13px 15px;
+  inset: -25%;
+  opacity: 0.045;
+  pointer-events: none;
+  position: fixed;
+  transform: rotate(8deg);
+  z-index: 100;
+}
+
+.loading-experience,
+.route-loading {
+  align-items: center;
+  background: #030303;
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: center;
+  min-height: 100svh;
+  position: fixed;
+  text-align: center;
+  z-index: 90;
+}
+
+.loading-experience p,
+.route-loading p {
+  color: var(--muted-white);
+  font-size: 0.59rem;
+  letter-spacing: 0.28em;
+  margin: 0.85rem 0 0;
+}
+
+.loading-line {
+  background: rgba(242, 239, 232, 0.1);
+  bottom: max(2.5rem, env(safe-area-inset-bottom));
+  height: 1px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  transform: translateX(-50%);
+  width: min(44vw, 180px);
+}
+
+.loading-line span {
+  background: linear-gradient(
+    90deg,
+    var(--dark-gold),
+    var(--amber),
+    var(--warm-white)
+  );
+  display: block;
+  height: 100%;
+  transform-origin: left;
+  width: 100%;
+}
+
+.invitation-gate {
+  align-items: center;
+  background:
+    linear-gradient(180deg, rgba(3, 32, 43, 0.72), rgba(4, 20, 28, 0.88)),
+    url("/media/sistek-fever-background.webp") center 28% / cover;
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: space-between;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: max(1.5rem, env(safe-area-inset-top)) var(--page-pad)
+    max(1.5rem, env(safe-area-inset-bottom));
+  position: fixed;
+  z-index: 80;
+}
+
+.guest-details {
+  align-items: center;
+  background:
+    linear-gradient(145deg, rgba(3, 33, 44, 0.88), rgba(4, 21, 29, 0.96)),
+    url("/media/sistek-fever-background.webp") center / cover;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  min-height: 100svh;
+  overflow-y: auto;
+  padding: max(2rem, env(safe-area-inset-top)) var(--page-pad)
+    max(2rem, env(safe-area-inset-bottom));
+  position: fixed;
+  touch-action: pan-y;
+  z-index: 80;
+}
+
+.guest-details-art {
+  background: radial-gradient(circle, rgba(255, 157, 32, 0.2), transparent 67%);
+  filter: blur(14px);
+  height: min(70vw, 520px);
+  pointer-events: none;
+  position: absolute;
+  width: min(70vw, 520px);
+}
+
+.guest-details-form {
+  backdrop-filter: blur(24px) saturate(150%);
+  background: linear-gradient(
+    145deg,
+    rgba(4, 55, 68, 0.56),
+    rgba(3, 26, 35, 0.66)
+  );
+  border: 1px solid rgba(247, 241, 229, 0.22);
+  border-radius: 24px;
+  display: grid;
+  gap: 1rem;
+  max-width: 430px;
+  padding: clamp(1.4rem, 5vw, 2.2rem);
+  position: relative;
+  width: 100%;
+}
+
+.guest-details-form > p,
+.guest-details-form > span,
+.guest-details-form label > span,
+.guest-details-form small {
+  color: var(--muted-white);
+  font-size: 0.48rem;
+  letter-spacing: 0.18em;
+}
+
+.guest-details-form > p {
+  color: var(--amber);
+  margin: 0 0 0.5rem;
+}
+
+.guest-details-form h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.4rem, 15vw, 5.8rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.78;
+  margin: 0 0 1rem;
+}
+
+.guest-details-form > span {
+  margin-bottom: 1.8rem;
+}
+
+.guest-details-form label {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.guest-details-form input {
+  appearance: none;
+  backdrop-filter: blur(14px) saturate(135%);
+  background: rgba(7, 63, 77, 0.38);
+  border: 1px solid var(--hairline);
+  border-radius: 13px;
+  color: var(--warm-white);
+  font: inherit;
+  min-height: 50px;
+  outline: none;
+  padding: 0.7rem 0.85rem;
+}
+
+.guest-details-form input:focus {
+  border-color: var(--amber);
+}
+
+.guest-details-form button {
+  backdrop-filter: blur(14px) saturate(135%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 172, 50, 0.96),
+    rgba(243, 113, 26, 0.94)
+  );
+  border: 1px solid rgba(255, 235, 196, 0.58);
+  border-radius: 13px;
+  color: #092631;
+  cursor: pointer;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-top: 1.3rem;
+  min-height: 54px;
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.guest-details-form button:hover {
+  box-shadow: 0 12px 34px rgba(255, 144, 28, 0.28);
+  transform: translateY(-1px);
+}
+
+.guest-details-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.guest-details-form small {
+  line-height: 1.5;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+.gate-light {
+  animation: gate-breathe 7s ease-in-out infinite alternate;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 157, 32, 0.22) 0%,
+    rgba(0, 192, 213, 0.08) 38%,
+    transparent 68%
+  );
+  filter: blur(14px);
+  height: 70%;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 18%;
+  transform: translateX(-50%);
+  width: 125%;
+}
+
+@keyframes gate-breathe {
+  from {
+    opacity: 0.45;
+    transform: translateX(-53%) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-47%) scale(1.1);
+  }
+}
+
+.gate-header,
+.gate-footer,
+.section-eyebrow {
+  display: flex;
+  font-size: 0.54rem;
+  justify-content: space-between;
+  letter-spacing: 0.15em;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.gate-header span:last-child,
+.gate-footer span:last-child,
+.section-eyebrow span:last-child {
+  color: var(--muted-white);
+}
+
+.gate-recipient {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.gate-recipient p {
+  color: var(--muted-white);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  margin: 0 0 1.6rem;
+}
+
+.gate-recipient small {
+  color: var(--muted-white);
+  display: block;
+  font-size: 0.48rem;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  margin: 1.65rem auto 0;
+  max-width: 19rem;
+}
+
+.gate-recipient h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.6rem, 18vw, 7.8rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 0.78;
+  margin: 0;
+}
+
+.recipient-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--dark-gold),
+    transparent
+  );
+  display: block;
+  height: 1px;
+  margin: 2rem auto 0;
+  width: 62%;
+}
+
+.gate-action {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-action > p {
+  color: var(--muted-white);
+  font-size: 0.48rem;
+  letter-spacing: 0.2em;
+  margin: 0;
+}
+
+.hold-button {
+  --hold-progress: 0;
+  align-items: center;
+  background: rgba(4, 38, 49, 0.58);
+  border: 1px solid rgba(247, 241, 229, 0.26);
+  box-shadow: 0 14px 44px rgba(0, 25, 33, 0.24);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 112px;
+  justify-content: center;
+  position: relative;
+  touch-action: none;
+  transform: scale(calc(1 + var(--hold-progress) * 0.05));
+  transition: transform 100ms linear;
+  user-select: none;
+  width: 112px;
+}
+
+.hold-button::before {
+  background: rgba(197, 138, 66, calc(var(--hold-progress) * 0.12));
+  border-radius: inherit;
+  box-shadow: 0 0 calc(var(--hold-progress) * 64px) rgba(197, 138, 66, 0.24);
+  content: "";
+  inset: 11px;
+  position: absolute;
+}
+
+.hold-button > span {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  margin-left: 0.18em;
+  position: relative;
+}
+
+.hold-button small {
+  color: var(--muted-white);
+  font-size: 0.44rem;
+  letter-spacing: 0.16em;
+  margin-left: 0.16em;
+  margin-top: 0.35rem;
+  position: relative;
+}
+
+.hold-ring {
+  inset: 0;
+  overflow: visible;
+  position: absolute;
+  transform: rotate(-90deg);
+}
+
+.hold-ring circle {
+  fill: none;
+  stroke-width: 1;
+}
+
+.hold-ring-track {
+  stroke: rgba(242, 239, 232, 0.14);
+}
+
+.hold-ring-progress {
+  stroke: var(--amber);
+  transition: stroke-dashoffset 30ms linear;
+}
+
+.experience-header {
+  align-items: center;
+  display: flex;
+  font-size: 0.54rem;
+  justify-content: space-between;
+  left: 0;
+  letter-spacing: 0.14em;
+  mix-blend-mode: difference;
+  padding: max(1.1rem, env(safe-area-inset-top)) var(--page-pad);
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 50;
+}
+
+.experience-header a {
+  color: var(--warm-white);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-decoration: none;
+}
+
+.experience-header span {
+  color: var(--muted-white);
+}
+
+.recognition-scene {
+  align-items: center;
+  background:
+    linear-gradient(120deg, rgba(2, 37, 49, 0.83), rgba(3, 23, 32, 0.58)),
+    url("/media/sistek-fever-background.webp") center / cover fixed;
+  display: flex;
+  justify-content: center;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: var(--page-pad);
+  position: relative;
+}
+
+.recognition-auto {
+  align-items: center;
+  background:
+    linear-gradient(120deg, rgba(2, 37, 49, 0.88), rgba(3, 23, 32, 0.78)),
+    url("/media/sistek-fever-background.webp") center / cover fixed;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: var(--page-pad);
+  position: fixed;
+  text-align: center;
+  touch-action: none;
+  z-index: 80;
+}
+
+.recognition-auto p {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.recognition-auto p span {
+  color: var(--muted-white);
+  display: block;
+  font-size: clamp(0.62rem, 2.6vw, 0.9rem);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.2rem;
+}
+
+.recognition-auto p strong {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.7rem, 17vw, 9rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.86;
+}
+
+.recognition-scene::after {
+  background: radial-gradient(
+    circle,
+    rgba(255, 157, 32, 0.15),
+    transparent 58%
+  );
+  content: "";
+  height: 70vw;
+  max-height: 600px;
+  max-width: 600px;
+  position: absolute;
+  width: 70vw;
+}
+
+.recognition-scene p {
+  font-size: clamp(0.76rem, 2.6vw, 1rem);
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  margin: 0;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.recognition-scene p span {
+  color: var(--muted-white);
+  display: block;
+  font-size: 0.64em;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.15rem;
+}
+
+.recognition-scene p strong {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.3rem, 17vw, 9.2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.85;
+}
+
+.recognition-sweep {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 208, 222, 0.22),
+    transparent
+  );
+  filter: blur(22px);
+  height: 180%;
+  left: -20%;
+  position: absolute;
+  top: -40%;
+  transform: rotate(18deg);
+  width: 24%;
+}
+
+.recognition-scene:nth-child(2) .recognition-sweep {
+  left: 70%;
+}
+.recognition-scene:nth-child(3)::after {
+  opacity: 1.8;
+}
+
+.scene-index {
+  bottom: 2rem;
+  color: var(--dark-gold);
+  font-size: 0.5rem;
+  left: var(--page-pad);
+  letter-spacing: 0.15em;
+  position: absolute;
+}
+
+.card-reveal-section {
+  background:
+    radial-gradient(
+      circle at 50% 37%,
+      rgba(255, 157, 32, 0.19),
+      transparent 30%
+    ),
+    linear-gradient(180deg, rgba(3, 31, 42, 0.78), rgba(3, 22, 30, 0.89));
+  min-height: 130svh;
+  overflow: hidden;
+  padding: 2rem var(--page-pad) 7rem;
+  position: relative;
+}
+
+.card-reveal-section::after {
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.05) 49%,
+    transparent 60%
+  );
+  content: "";
+  inset: 0;
+  pointer-events: none;
+}
+
+.card-scene-shell {
+  height: min(80vw, 430px);
+  margin: 15vh calc(var(--page-pad) * -1) 0;
+  position: relative;
+  touch-action: pan-y;
+}
+
+.card-scene-shell canvas {
+  touch-action: pan-y !important;
+}
+
+.card-loading {
+  animation: pulse 1.8s ease-in-out infinite;
+  background: linear-gradient(120deg, #090909, #12100e, #090909);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  height: min(53vw, 250px);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(84vw, 400px);
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.48;
+  }
+}
+
+.fallback-card-wrap {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+.vip-card {
+  aspect-ratio: 1.6 / 1;
+  background:
+    linear-gradient(135deg, rgba(2, 37, 49, 0.34), rgba(4, 39, 48, 0.66)),
+    url("/media/sistek-fever-background.webp") center / cover;
+  border: 1px solid rgba(247, 241, 229, 0.34);
+  border-radius: 18px;
+  backdrop-filter: blur(18px) saturate(135%);
+  box-shadow:
+    0 38px 80px rgba(0, 18, 25, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: var(--warm-white);
+  max-width: 460px;
+  overflow: hidden;
+  padding: clamp(1.2rem, 5vw, 2rem);
+  position: relative;
+  width: min(84vw, 460px);
+}
+
+.card-noise {
+  background-image: repeating-linear-gradient(
+    110deg,
+    transparent 0,
+    transparent 2px,
+    rgba(255, 255, 255, 0.012) 3px
+  );
+  inset: 0;
+  opacity: 0.6;
+  position: absolute;
+}
+
+.card-hologram {
+  background: linear-gradient(
+    118deg,
+    transparent,
+    rgba(197, 138, 66, 0.1),
+    transparent
+  );
+  inset: -50%;
+  position: absolute;
+  transform: rotate(10deg);
+}
+
+.card-brand {
+  font-size: clamp(0.62rem, 2vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  position: relative;
+}
+
+.card-title {
+  left: clamp(1.2rem, 5vw, 2rem);
+  position: absolute;
+  top: 43%;
+}
+
+.card-title small {
+  color: var(--amber);
+  display: block;
+  font-size: 0.45rem;
+  letter-spacing: 0.28em;
+}
+
+.card-title strong {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.55rem, 7vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 0.9;
+}
+
+.card-person {
+  bottom: clamp(1.1rem, 4vw, 1.8rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  left: clamp(1.2rem, 5vw, 2rem);
+  position: absolute;
+}
+
+.card-person span,
+.card-member {
+  font-size: clamp(0.48rem, 1.7vw, 0.68rem);
+  letter-spacing: 0.13em;
+}
+
+.card-person small {
+  color: var(--muted-white);
+  font-size: clamp(0.4rem, 1.4vw, 0.55rem);
+  letter-spacing: 0.13em;
+}
+
+.card-infinity {
+  bottom: clamp(1rem, 4vw, 1.7rem);
+  color: var(--dark-gold);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  line-height: 0.6;
+  position: absolute;
+  right: clamp(1.2rem, 5vw, 2rem);
+}
+
+.vip-card-back {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.vip-card-back .card-brand {
+  left: clamp(1.2rem, 5vw, 2rem);
+  position: absolute;
+  top: clamp(1.2rem, 5vw, 2rem);
+}
+
+.card-back-copy {
+  position: relative;
+  text-align: center;
+}
+.card-back-copy p {
+  color: var(--amber);
+  font-size: clamp(0.46rem, 1.6vw, 0.62rem);
+  letter-spacing: 0.14em;
+  margin: 0.2rem 0;
+}
+.card-back-copy strong {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.5rem, 11vw, 4.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+.card-back-copy small {
+  color: var(--muted-white);
+  font-size: 0.45rem;
+  letter-spacing: 0.18em;
+}
+.card-member {
+  bottom: clamp(1.2rem, 5vw, 2rem);
+  color: var(--muted-white);
+  position: absolute;
+  right: clamp(1.2rem, 5vw, 2rem);
+}
+
+.card-reveal-copy {
+  align-items: end;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  margin-top: 10vh;
+}
+
+.card-reveal-copy h2,
+.letter-heading h2,
+.invitation-closing h2,
+.accepted-state > h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(4rem, 18vw, 9.2rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.7;
+  margin: 0;
+}
+
+.card-reveal-copy p {
+  color: var(--muted-white);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.25rem, 5vw, 1.8rem);
+  line-height: 1.35;
+  margin: 0;
+  max-width: 27rem;
+}
+
+.card-instruction {
+  color: var(--dark-gold);
+  font-size: 0.48rem;
+  letter-spacing: 0.17em;
+  margin: 3rem 0 0;
+  text-align: center;
+}
+
+.storytelling-section {
+  display: grid;
+  min-height: 400svh;
+  position: relative;
+}
+
+.story-card-column {
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.story-card-sticky {
+  align-items: center;
+  display: flex;
+  height: 100svh;
+  justify-content: center;
+  perspective: 1000px;
+  position: sticky;
+  top: 0;
+  transform-style: preserve-3d;
+}
+
+.story-card-sticky .vip-card {
+  opacity: 0.3;
+  transform: scale(0.72);
+}
+
+.story-card-halo {
+  background: radial-gradient(
+    circle,
+    rgba(255, 157, 32, 0.22),
+    transparent 64%
+  );
+  filter: blur(20px);
+  height: min(88vw, 600px);
+  position: absolute;
+  width: min(88vw, 600px);
+  z-index: -1;
+}
+
+.story-panels {
+  position: relative;
+  z-index: 2;
+}
+
+.story-panel {
+  align-items: center;
+  display: flex;
+  min-height: 100svh;
+  padding: var(--page-pad);
+  position: relative;
+}
+
+.story-panel > span {
+  color: var(--dark-gold);
+  font-size: 0.5rem;
+  left: var(--page-pad);
+  letter-spacing: 0.16em;
+  position: absolute;
+  top: 2rem;
+}
+
+.story-phrase {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.1rem, 15vw, 8rem);
+  font-weight: 400;
+  line-height: 0.88;
+  margin: 0;
+  max-width: 950px;
+  text-wrap: balance;
+}
+
+.story-panel:nth-child(even) {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.invitation-letter {
+  border-bottom: 1px solid var(--hairline);
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 5rem;
+  margin: 0 var(--page-pad);
+  padding: 16vh 0;
+  position: relative;
+}
+
+.letter-heading > span,
+.letter-signature {
+  color: var(--muted-white);
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+}
+
+.letter-heading h2 {
+  margin-top: 3rem;
+}
+
+.letter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.letter-body p {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.75rem, 7vw, 3.5rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.letter-body p:not(:first-child) {
+  color: #d8d3c8;
+}
+.letter-body p:first-child {
+  color: var(--amber);
+  font-style: italic;
+}
+.letter-signature {
+  justify-self: end;
+}
+
+.privileges-section {
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 157, 32, 0.19),
+      transparent 43%
+    ),
+    linear-gradient(rgba(3, 29, 40, 0.8), rgba(3, 29, 40, 0.8));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 8vh var(--page-pad) 5vh;
+  position: relative;
+  text-align: center;
+}
+
+.privileges-title,
+.privilege-footnote {
+  color: var(--muted-white);
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+}
+
+.privilege-stage {
+  align-items: center;
+  display: grid;
+  flex: 1;
+  width: 100%;
+}
+
+.privilege {
+  grid-area: 1 / 1;
+  opacity: 0;
+  width: 100%;
+}
+
+.privilege strong {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(9rem, 45vw, 23rem);
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  line-height: 0.62;
+}
+
+.privilege p {
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  letter-spacing: 0.16em;
+  margin: 3rem 0 0;
+}
+
+.privilege span {
+  color: var(--amber);
+  display: block;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  margin-top: 0.8rem;
+}
+
+.anniversary-sequence {
+  background: rgba(3, 27, 37, 0.88);
+  padding: 12vh 0 18vh;
+}
+
+.media-frame {
+  height: 88svh;
+  margin: 0 auto;
+  max-width: 960px;
+  overflow: hidden;
+  position: relative;
+}
+
+.media-frame img {
+  height: 100%;
+  filter: saturate(0.78) contrast(1.1) brightness(0.72);
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  transform: scale(1.04);
+  width: 100%;
+}
+
+.media-grade {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 27, 37, 0.94) 0%,
+      transparent 20%,
+      transparent 76%,
+      rgba(3, 27, 37, 0.94) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(4, 33, 44, 0.72),
+      transparent,
+      rgba(255, 113, 24, 0.32)
+    );
+  inset: 0;
+  position: absolute;
+}
+
+.media-words {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  padding: 13vh var(--page-pad);
+  position: relative;
+  z-index: 2;
+}
+
+.media-words h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.6rem, 17vw, 9rem);
+  font-weight: 400;
+  line-height: 0.78;
+  margin: 0;
+  mix-blend-mode: screen;
+}
+
+.media-words h3:nth-child(2) {
+  align-self: flex-end;
+}
+
+.anniversary-count {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: 18vh auto 0;
+  max-width: 960px;
+  padding: 0 var(--page-pad);
+}
+
+.anniversary-count > span {
+  color: var(--muted-white);
+  font-size: 0.48rem;
+  grid-column: 1 / -1;
+  letter-spacing: 0.18em;
+  margin-bottom: 3rem;
+}
+
+.anniversary-count strong {
+  color: var(--amber);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(10rem, 48vw, 25rem);
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  line-height: 0.57;
+}
+
+.anniversary-count .anniversary-number {
+  font-family: var(--font-sans), "Helvetica Neue", sans-serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: 500;
+  letter-spacing: -0.14em;
+}
+
+.anniversary-count h2 {
+  align-self: end;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.4rem, 9vw, 5.3rem);
+  font-weight: 400;
+  line-height: 0.82;
+  margin: 0 0 0.2rem -0.2rem;
+}
+
+.invitation-closing {
+  align-items: center;
+  background:
+    linear-gradient(180deg, rgba(3, 27, 37, 0.86), rgba(4, 22, 30, 0.94)),
+    url("/media/sistek-fever-background.webp") center bottom / cover fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 115svh;
+  overflow: hidden;
+  padding: 15vh var(--page-pad);
+  position: relative;
+  text-align: center;
+}
+
+.closing-light {
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 157, 32, 0.2),
+    transparent 66%
+  );
+  height: 80%;
+  position: absolute;
+  top: 12%;
+  width: 140%;
+}
+
+.invitation-closing > p {
+  color: var(--muted-white);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.4rem, 6vw, 2.5rem);
+  line-height: 1.25;
+  margin: 0 0 13vh;
+  max-width: 34rem;
+  position: relative;
+}
+
+.invitation-closing h2 {
+  font-size: clamp(3.6rem, 17vw, 8rem);
+  position: relative;
+}
+
+.invitation-closing > span {
+  color: var(--amber);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.closing-actions,
+.accepted-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 10vh;
+  position: relative;
+  width: min(100%, 380px);
+}
+
+.magnetic-button {
+  --magnet-x: 0px;
+  --magnet-y: 0px;
+  align-items: center;
+  backdrop-filter: blur(16px) saturate(135%);
+  background: rgba(4, 43, 55, 0.34);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  min-height: 54px;
+  overflow: hidden;
+  padding: 1rem 1.4rem;
+  position: relative;
+  transform: translate(var(--magnet-x), var(--magnet-y));
+  transition:
+    border-color 400ms ease,
+    transform 300ms ease;
+}
+
+.magnetic-button::before {
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.16),
+    transparent
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: translateX(-120%);
+  transition: transform 700ms ease;
+}
+
+.magnetic-button:hover::before {
+  transform: translateX(120%);
+}
+.magnetic-button:hover {
+  border-color: rgba(197, 138, 66, 0.75);
+}
+
+.magnetic-button > span {
+  align-items: center;
+  display: flex;
+  font-size: 0.56rem;
+  gap: 0.6rem;
+  letter-spacing: 0.15em;
+  position: relative;
+}
+
+.magnetic-button.primary {
+  border-color: var(--amber);
+  box-shadow: inset 0 0 30px rgba(197, 138, 66, 0.04);
+}
+
+.preaccept-details {
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 7vh;
+  padding-top: 2rem;
+  width: min(100%, 380px);
+}
+
+.preaccept-details span {
+  color: var(--muted-white);
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+}
+
+.accepted-state {
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255, 157, 32, 0.16),
+      transparent 28%
+    ),
+    rgba(3, 29, 40, 0.93);
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding: 15vh var(--page-pad);
+  text-align: center;
+}
+
+.accepted-check {
+  align-items: center;
+  border: 1px solid var(--amber);
+  border-radius: 999px;
+  color: var(--amber);
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 44px;
+}
+
+.accepted-state > p {
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  margin: 0 0 2.5rem;
+}
+
+.accepted-state > h2 {
+  font-size: clamp(3.5rem, 16vw, 7.5rem);
+}
+
+.accepted-state > span {
+  color: var(--amber);
+  font-size: 0.6rem;
+  letter-spacing: 0.19em;
+  margin-top: 2.5rem;
+}
+
+.accepted-pass {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 12vh 0 0;
+  width: 100%;
+}
+
+.qr-frame {
+  align-items: center;
+  backdrop-filter: blur(18px) saturate(135%);
+  background: rgba(4, 43, 55, 0.3);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0.7rem;
+}
+
+.qr-frame img {
+  display: block;
+  height: 132px;
+  image-rendering: pixelated;
+  width: 132px;
+}
+
+.qr-frame span {
+  color: var(--muted-white);
+  font-size: 0.45rem;
+  letter-spacing: 0.17em;
+}
+
+.event-details {
+  border-top: 1px solid var(--hairline);
+  margin-top: 14vh;
+  padding-top: 2rem;
+  text-align: left;
+  width: min(100%, 720px);
+}
+
+.event-details > span {
+  color: var(--amber);
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+}
+
+.event-details dl {
+  display: grid;
+  gap: 0;
+  margin: 2rem 0 0;
+}
+
+.event-details dl > div {
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 76px 1fr;
+  padding: 1.2rem 0;
+}
+
+.event-details dt {
+  color: var(--muted-white);
+  font-size: 0.48rem;
+  letter-spacing: 0.15em;
+}
+
+.event-details dd {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.site-footer {
+  align-items: center;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  font-size: 0.48rem;
+  justify-content: space-between;
+  letter-spacing: 0.14em;
+  margin: 0 var(--page-pad);
+  padding: 2rem 0 max(2rem, env(safe-area-inset-bottom));
+}
+
+.site-footer p {
+  color: var(--muted-white);
+  font-size: inherit;
+  margin: 0;
+  text-align: center;
+}
+
+.sound-toggle {
+  align-items: center;
+  backdrop-filter: blur(14px);
+  background: rgba(4, 44, 56, 0.68);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  display: flex;
+  gap: 0.5rem;
+  left: var(--page-pad);
+  min-height: 44px;
+  padding: 0 0.9rem;
+  position: fixed;
+  z-index: 60;
+}
+
+.sound-toggle span {
+  font-size: 0.48rem;
+  letter-spacing: 0.14em;
+}
+
+.invalid-invitation {
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 157, 32, 0.16),
+      transparent 34%
+    ),
+    linear-gradient(rgba(3, 29, 40, 0.82), rgba(3, 29, 40, 0.82)),
+    url("/media/sistek-fever-background.webp") center / cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100svh;
+  padding: max(2rem, env(safe-area-inset-top)) var(--page-pad)
+    max(2rem, env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+.invalid-invitation > div:not(.invalid-light) {
+  margin: auto 0;
+  position: relative;
+}
+
+.invalid-invitation p {
+  color: var(--amber);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+}
+
+.invalid-invitation h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.8rem, 12vw, 5.8rem);
+  font-weight: 400;
+  line-height: 0.95;
+  margin: 2rem auto;
+  max-width: 780px;
+}
+
+.invalid-invitation div > span {
+  color: var(--muted-white);
+  font-size: 0.48rem;
+  letter-spacing: 0.14em;
+}
+
+.low-performance .grain-overlay {
+  display: none;
+}
+.low-performance .gate-light,
+.low-performance .recognition-scene::after,
+.low-performance .story-card-halo {
+  filter: none;
+  opacity: 0.5;
+}
+
+@media (max-width: 699px) {
+  body {
+    background-attachment: scroll;
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+  }
+
+  .fever-experience {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 29, 40, 0.82),
+      rgba(3, 25, 35, 0.94)
+    );
+  }
+
+  .grain-overlay {
+    display: none;
+  }
+
+  .recognition-scene {
+    background: rgba(3, 35, 45, 0.5);
+    min-height: 58svh;
+    padding: 4.5rem var(--page-pad);
+  }
+
+  .recognition-auto {
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: 100% auto;
+  }
+
+  .recognition-scene p strong {
+    font-size: clamp(3.35rem, 15vw, 5.4rem);
+    line-height: 0.92;
+  }
+
+  .card-reveal-section {
+    background: rgba(3, 31, 42, 0.62);
+    min-height: auto;
+    padding-bottom: 5rem;
+  }
+
+  .card-scene-shell {
+    height: min(68vw, 310px);
+    margin-top: 4rem;
+  }
+
+  .card-reveal-copy {
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .card-reveal-copy h2 {
+    font-size: clamp(3.5rem, 16vw, 5.2rem);
+  }
+
+  .card-instruction {
+    margin-top: 2rem;
+  }
+
+  .storytelling-section {
+    display: block;
+    min-height: auto;
+  }
+
+  .story-card-column {
+    display: none;
+  }
+
+  .story-panels {
+    display: grid;
+    gap: 1px;
+  }
+
+  .story-panel {
+    background: rgba(3, 32, 43, 0.56);
+    min-height: 42svh;
+    padding: 4rem var(--page-pad);
+  }
+
+  .story-panel:nth-child(even) {
+    text-align: left;
+  }
+
+  .story-phrase {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+    line-height: 0.94;
+  }
+
+  .invitation-letter {
+    gap: 3.5rem;
+    margin: 0 var(--page-pad);
+    padding: 5rem 0;
+  }
+
+  .letter-body {
+    gap: 2rem;
+  }
+
+  .letter-body p {
+    font-size: clamp(1.55rem, 7vw, 2.25rem);
+  }
+
+  .privileges-section,
+  .invitation-closing,
+  .accepted-state {
+    background: rgba(3, 29, 40, 0.76);
+    min-height: auto;
+  }
+
+  .privileges-section {
+    padding-bottom: 4rem;
+    padding-top: 5rem;
+  }
+
+  .privilege-stage {
+    min-height: 68svh;
+  }
+
+  .anniversary-sequence {
+    background: rgba(3, 27, 37, 0.76);
+    padding: 5rem 0 7rem;
+  }
+
+  .media-frame {
+    height: min(72svh, 620px);
+  }
+
+  .anniversary-count {
+    margin-top: 7rem;
+  }
+
+  .invitation-closing {
+    padding-bottom: 6rem;
+    padding-top: 6rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .card-reveal-copy {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+
+  .story-card-sticky .vip-card {
+    opacity: 0.44;
+    transform: scale(0.9);
+  }
+
+  .invitation-letter {
+    gap: 8vw;
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
+  .letter-signature {
+    grid-column: 2;
+  }
+
+  .accepted-pass {
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .accepted-actions {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .accepted-actions .magnetic-button {
+    min-width: 220px;
+  }
+
+  .event-details dl {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .event-details dl > div:nth-child(odd) {
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1040px) {
+  .recognition-scene,
+  .privileges-section,
+  .invitation-closing {
+    min-height: min(100vh, 980px);
+  }
+
+  .storytelling-section {
+    grid-template-columns: 44% 56%;
+  }
+
+  .story-card-column {
+    height: 100%;
+    inset: 0 auto 0 0;
+    width: 47%;
+  }
+
+  .story-panels {
+    grid-column: 2;
+  }
+  .story-panel {
+    padding-left: 0;
+  }
+  .story-panel:nth-child(even) {
+    text-align: left;
+  }
+  .story-panel > span {
+    left: 0;
+  }
+
+  .anniversary-sequence {
+    margin-left: calc((100vw - min(100vw, 1180px)) / -2);
+    margin-right: calc((100vw - min(100vw, 1180px)) / -2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .grain-overlay,
+  .recognition-sweep {
+    display: none;
+  }
+
+  .story-card-sticky {
+    transform: none !important;
+  }
+
+  .privilege {
+    opacity: 1;
+    position: static;
+  }
+
+  .privilege-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    justify-content: center;
+  }
+
+  .privilege strong {
+    font-size: clamp(7rem, 30vw, 14rem);
+  }
+}
