@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const statements = [
   ["SOME INVITATIONS", "ARE GIVEN."],
@@ -9,40 +9,36 @@ const statements = [
   ["THIS ONE", "IS YOURS."],
 ];
 
-export function RecognitionSequence() {
-  const reduced = useReducedMotion();
+export function RecognitionSequence({ onComplete }: { onComplete: () => void }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const isLast = index === statements.length - 1;
+    const timer = window.setTimeout(
+      () => (isLast ? onComplete() : setIndex((value) => value + 1)),
+      isLast ? 4200 : 3400,
+    );
+    return () => window.clearTimeout(timer);
+  }, [index, onComplete]);
+
+  const [lineOne, lineTwo] = statements[index];
 
   return (
-    <section aria-label="Your recognition" className="recognition-sequence">
-      {statements.map(([lineOne, lineTwo], index) => (
-        <div className={`recognition-scene scene-${index + 1}`} key={lineOne}>
-          <div aria-hidden="true" className="recognition-sweep" />
-          <motion.p
-            initial={
-              reduced
-                ? { opacity: 0 }
-                : {
-                    opacity: 0,
-                    y: 40,
-                    filter: "blur(12px)",
-                    letterSpacing: "0.18em",
-                  }
-            }
-            transition={{ duration: 1.35, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ amount: 0.7, once: false }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              filter: "blur(0px)",
-              letterSpacing: "0.04em",
-            }}
-          >
-            <span>{lineOne}</span>
-            <strong>{lineTwo}</strong>
-          </motion.p>
-          <span className="scene-index">0{index + 1}</span>
-        </div>
-      ))}
+    <section aria-label="Your recognition" className="recognition-auto">
+      <div aria-hidden="true" className="recognition-sweep" />
+      <AnimatePresence mode="wait">
+        <motion.p
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          exit={{ opacity: 0, filter: "blur(12px)", y: -28 }}
+          initial={{ opacity: 0, filter: "blur(12px)", y: 38 }}
+          key={lineOne}
+          transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span>{lineOne}</span>
+          <strong>{lineTwo}</strong>
+        </motion.p>
+      </AnimatePresence>
+      <span className="scene-index">0{index + 1}</span>
     </section>
   );
 }

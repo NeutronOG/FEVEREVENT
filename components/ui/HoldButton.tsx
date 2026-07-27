@@ -3,12 +3,22 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const HOLD_DURATION = 1800;
+const RING_CIRCUMFERENCE = 352;
 
 export function HoldButton({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
   const startRef = useRef<number | null>(null);
   const frameRef = useRef<number | null>(null);
   const completeRef = useRef(false);
+
+  const complete = useCallback(() => {
+    if (completeRef.current) return;
+    completeRef.current = true;
+    if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    frameRef.current = null;
+    navigator.vibrate?.(28);
+    onComplete();
+  }, [onComplete]);
 
   const stop = useCallback(() => {
     if (frameRef.current) cancelAnimationFrame(frameRef.current);
@@ -28,15 +38,13 @@ export function HoldButton({ onComplete }: { onComplete: () => void }) {
       );
       setProgress(next);
       if (next >= 1) {
-        completeRef.current = true;
-        navigator.vibrate?.(28);
-        onComplete();
+        complete();
         return;
       }
       frameRef.current = requestAnimationFrame(tick);
     };
     frameRef.current = requestAnimationFrame(tick);
-  }, [onComplete]);
+  }, [complete]);
 
   useEffect(() => stop, [stop]);
 
@@ -53,20 +61,29 @@ export function HoldButton({ onComplete }: { onComplete: () => void }) {
       onKeyUp={stop}
       onPointerCancel={stop}
       onPointerDown={(event) => {
-        event.currentTarget.setPointerCapture(event.pointerId);
+        event.currentTarget.setPointerCapture?.(event.pointerId);
         begin();
       }}
-      onPointerLeave={stop}
       onPointerUp={stop}
+      onTouchCancel={stop}
+      onTouchEnd={stop}
+      onTouchStart={begin}
       style={{ "--hold-progress": progress } as React.CSSProperties}
       type="button"
     >
       <svg aria-hidden="true" className="hold-ring" viewBox="0 0 120 120">
         <circle className="hold-ring-track" cx="60" cy="60" r="56" />
-        <circle className="hold-ring-progress" cx="60" cy="60" r="56" />
+        <circle
+          className="hold-ring-progress"
+          cx="60"
+          cy="60"
+          r="56"
+          strokeDasharray={RING_CIRCUMFERENCE}
+          strokeDashoffset={RING_CIRCUMFERENCE * (1 - progress)}
+        />
       </svg>
-      <span>HOLD</span>
-      <small>TO ENTER</small>
+      <span>BEGIN</span>
+      <small>PRESS &amp; HOLD</small>
     </button>
   );
 }

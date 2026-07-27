@@ -1,69 +1,57 @@
-export const dynamic = "force-dynamic";
+import { getSupabaseAdmin } from "@/lib/server/supabase";
 
-const corsHeaders = {
-  "access-control-allow-headers": "content-type",
-  "access-control-allow-methods": "GET, POST, OPTIONS",
-  "access-control-allow-origin": "*",
-  "cache-control": "no-store",
-  "content-type": "application/json; charset=utf-8",
-};
+export const runtime = "nodejs";
 
-const deviceIdPattern = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
+const deviceIdPattern =
+  /^[a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
 
-async function database() {
-  const { env } = await import("cloudflare:workers");
-  const bindings = env as unknown as { DB?: D1Database };
-  if (!bindings.DB) throw new Error("D1 binding DB is unavailable");
-  return bindings.DB;
-}
+async function readCount() {
+  const { count, error } = await getSupabaseAdmin()
+    .from("visitor_devices")
+    .select("*", { count: "exact", head: true });
 
-async function initialize(db: D1Database) {
-  await db
-    .prepare(
-      "CREATE TABLE IF NOT EXISTS visitor_devices (device_id TEXT PRIMARY KEY, first_seen_at TEXT NOT NULL)",
-    )
-    .run();
-}
-
-async function readCount(db: D1Database) {
-  const result = await db
-    .prepare("SELECT COUNT(*) AS count FROM visitor_devices")
-    .first<{ count: number }>();
-  return result?.count ?? 0;
-}
-
-export function OPTIONS() {
-  return new Response(null, { headers: corsHeaders, status: 204 });
+  if (error) throw error;
+  return count ?? 0;
 }
 
 export async function GET() {
   try {
-    const db = await database();
-    await initialize(db);
-    return Response.json({ count: await readCount(db) }, { headers: corsHeaders });
+    return Response.json(
+      { count: await readCount() },
+      { headers: { "cache-control": "no-store" } },
+    );
   } catch {
-    return Response.json({ error: "Counter unavailable" }, { headers: corsHeaders, status: 503 });
+    return Response.json({ error: "Counter unavailable" }, { status: 503 });
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { deviceId?: unknown };
-    if (typeof body.deviceId !== "string" || !deviceIdPattern.test(body.deviceId)) {
-      return Response.json({ error: "Invalid device identifier" }, { headers: corsHeaders, status: 400 });
+    if (
+      typeof body.deviceId !== "string" ||
+      !deviceIdPattern.test(body.deviceId)
+    ) {
+      return Response.json(
+        { error: "Invalid device identifier" },
+        { status: 400 },
+      );
     }
 
-    const db = await database();
-    await initialize(db);
-    await db
-      .prepare(
-        "INSERT OR IGNORE INTO visitor_devices (device_id, first_seen_at) VALUES (?, ?)",
-      )
-      .bind(body.deviceId, new Date().toISOString())
-      .run();
+    const { error } = await getSupabaseAdmin().from("visitor_devices").upsert(
+      {
+        device_id: body.deviceId,
+        first_seen_at: new Date().toISOString(),
+      },
+      { ignoreDuplicates: true, onConflict: "device_id" },
+    );
 
-    return Response.json({ count: await readCount(db) }, { headers: corsHeaders });
+    if (error) throw error;
+    return Response.json(
+      { count: await readCount() },
+      { headers: { "cache-control": "no-store" } },
+    );
   } catch {
-    return Response.json({ error: "Counter unavailable" }, { headers: corsHeaders, status: 503 });
+    return Response.json({ error: "Counter unavailable" }, { status: 503 });
   }
 }

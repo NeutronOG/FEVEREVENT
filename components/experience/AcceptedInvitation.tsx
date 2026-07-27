@@ -8,19 +8,27 @@ import { Check, Download, WalletCards } from "lucide-react";
 import { GuestCardFallback } from "./GuestCardFallback";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import type { Invitation } from "@/data/invitations";
+import type { RegisteredGuest } from "@/lib/guest-registration";
 
-export function AcceptedInvitation({ invitation }: { invitation: Invitation }) {
+export function AcceptedInvitation({
+  invitation,
+  guest,
+}: {
+  invitation: Invitation;
+  guest: RegisteredGuest | null;
+}) {
   const [qr, setQr] = useState("");
   const cardRef = useRef<HTMLDivElement>(null);
+  const qrPayload = guest?.qrToken ?? `FEVER-${invitation.memberNumber}`;
 
   useEffect(() => {
-    void QRCode.toDataURL(invitation.token, {
+    void QRCode.toDataURL(qrPayload, {
       width: 256,
       margin: 1,
       color: { dark: "#f2efe8", light: "#050505" },
       errorCorrectionLevel: "H",
     }).then(setQr);
-  }, [invitation.token]);
+  }, [qrPayload]);
 
   const saveCard = async () => {
     if (!cardRef.current) return;
@@ -62,7 +70,7 @@ export function AcceptedInvitation({ invitation }: { invitation: Invitation }) {
               src={qr}
             />
           ) : null}
-          <span>{invitation.token}</span>
+          <span>FEVER · {invitation.memberNumber}</span>
         </div>
       </div>
 
@@ -71,10 +79,12 @@ export function AcceptedInvitation({ invitation }: { invitation: Invitation }) {
           <Download size={15} /> SAVE YOUR CARD
         </MagneticButton>
         <MagneticButton
-          aria-label="Wallet pass integration coming soon"
+          aria-label="Apple Wallet pass"
           onClick={() =>
             window.alert(
-              "Wallet integration is prepared and will activate when FEVER connects its pass service.",
+              guest?.walletPassStatus === "issued"
+                ? "Your Apple Wallet pass is ready."
+                : "Your Apple Wallet pass is being prepared securely.",
             )
           }
         >

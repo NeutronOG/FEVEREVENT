@@ -3,10 +3,9 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type { Invitation } from "@/data/invitations";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-export function PrivilegesSection({ invitation }: { invitation: Invitation }) {
+export function PrivilegesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const symbolRef = useRef<HTMLDivElement>(null);
   const shotsRef = useRef<HTMLDivElement>(null);
@@ -53,23 +52,20 @@ export function PrivilegesSection({ invitation }: { invitation: Invitation }) {
 
   return (
     <section className="privileges-section" ref={sectionRef}>
-      <p className="privileges-title">YOUR HONORED GUEST PRIVILEGES</p>
+      <p className="privileges-title">
+        YOUR HONORED GUEST CARD INCLUDES EXCLUSIVE PRIVILEGES:
+      </p>
       <div className="privilege-stage">
         <div className="privilege privilege-lifetime" ref={symbolRef}>
           <strong>∞</strong>
-          <p>LIFETIME VIP ACCESS TO FEVER</p>
+          <p>Lifetime VIP Access to FEVER.</p>
         </div>
         <div className="privilege privilege-shots" ref={shotsRef}>
-          <strong>
-            {String(invitation.complimentaryShots).padStart(2, "0")}
-          </strong>
-          <p>COMPLIMENTARY SHOTS</p>
-          <span>EVERY TIME YOU VISIT</span>
+          <strong>2</strong>
+          <p>Two Free Shots every time you visit.</p>
         </div>
       </div>
-      <span className="privilege-footnote">
-        PERSONAL · NON-TRANSFERABLE · LIFETIME
-      </span>
+      <span className="privilege-footnote">PERSONAL · NON-TRANSFERABLE</span>
     </section>
   );
 }

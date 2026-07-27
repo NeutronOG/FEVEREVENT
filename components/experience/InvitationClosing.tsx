@@ -15,11 +15,6 @@ export function InvitationClosing({
   accepted,
   onAccept,
 }: InvitationClosingProps) {
-  const scrollToDetails = () =>
-    document
-      .querySelector(accepted ? "#event-details" : "#closing-details")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-
   return (
     <section className="invitation-closing" id="closing">
       <div aria-hidden="true" className="closing-light" />
@@ -37,9 +32,7 @@ export function InvitationClosing({
         viewport={{ amount: 0.6, once: true }}
         whileInView={{ opacity: 1, filter: "blur(0px)" }}
       >
-        WELCOME,
-        <br />
-        {invitation.firstName.toLocaleUpperCase("es-MX")}.
+        WELCOME.
       </motion.h2>
       <span>THE MUSIC IS WAITING FOR YOU.</span>
 
@@ -57,9 +50,6 @@ export function InvitationClosing({
           }
         >
           SAVE YOUR CARD
-        </MagneticButton>
-        <MagneticButton onClick={scrollToDetails}>
-          VIEW EVENT DETAILS
         </MagneticButton>
       </div>
 

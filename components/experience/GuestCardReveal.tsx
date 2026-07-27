@@ -1,60 +1,14 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { Component, type ReactNode, useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { GuestCardFallback } from "./GuestCardFallback";
 import type { Invitation } from "@/data/invitations";
 
-const GuestCardScene = dynamic(() => import("./GuestCardScene"), {
-  ssr: false,
-  loading: () => <div className="card-loading" />,
-});
-
-class CanvasBoundary extends Component<
-  { children: ReactNode; fallback: ReactNode },
-  { failed: boolean }
-> {
-  state = { failed: false };
-  static getDerivedStateFromError() {
-    return { failed: true };
-  }
-  render() {
-    return this.state.failed ? this.props.fallback : this.props.children;
-  }
-}
-
-function supportsWebGL() {
-  try {
-    const canvas = document.createElement("canvas");
-    return Boolean(
-      window.WebGLRenderingContext &&
-      (canvas.getContext("webgl") || canvas.getContext("experimental-webgl")),
-    );
-  } catch {
-    return false;
-  }
-}
-
 export function GuestCardReveal({
   invitation,
-  lowPower,
 }: {
   invitation: Invitation;
-  lowPower: boolean;
 }) {
-  const [webgl, setWebgl] = useState<boolean | null>(null);
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setWebgl(supportsWebGL()));
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
-  const fallback = (
-    <div className="fallback-card-wrap">
-      <GuestCardFallback invitation={invitation} />
-    </div>
-  );
-
   return (
     <section className="card-reveal-section">
       <div className="section-eyebrow">
@@ -68,13 +22,9 @@ export function GuestCardReveal({
         viewport={{ amount: 0.45, once: true }}
         whileInView={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
       >
-        {webgl === null && <div className="card-loading" />}
-        {webgl === false && fallback}
-        {webgl && (
-          <CanvasBoundary fallback={fallback}>
-            <GuestCardScene invitation={invitation} lowPower={lowPower} />
-          </CanvasBoundary>
-        )}
+        <div className="fallback-card-wrap">
+          <GuestCardFallback invitation={invitation} />
+        </div>
       </motion.div>
       <div className="card-reveal-copy">
         <h2>
@@ -87,7 +37,7 @@ export function GuestCardReveal({
           atmosphere simply by being there.
         </p>
       </div>
-      <p className="card-instruction">TAP TO TURN · DRAG TO MOVE</p>
+      <p className="card-instruction">YOUR PERSONAL HONORED GUEST CARD</p>
     </section>
   );
 }

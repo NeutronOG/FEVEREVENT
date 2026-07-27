@@ -1,14 +1,12 @@
-"use client";
-
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { InvitationExperience } from "@/components/experience/InvitationExperience";
+import { getInvitation } from "@/data/invitations";
 
 export default function Home() {
-  const router = useRouter();
+  const invitation = getInvitation("AGUS0017");
 
-  useEffect(() => {
-    router.replace("/invitation/AGUS0017");
-  }, [router]);
+  if (!invitation) {
+    return null;
+  }
 
-  return <main aria-label="Opening your FEVER invitation" />;
+  return <InvitationExperience invitation={invitation} />;
 }

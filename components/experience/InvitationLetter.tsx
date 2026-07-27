@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 const paragraphs = [
   "Some invitations are earned.",
   "Your presence, your loyalty, and the energy you bring to every night have made you someone we’d like to recognize.",
-  "This invitation is more than access to an event. It is your place among the guests who make every night worth remembering.",
+  "This invitation is more than access to an event, it’s your place among the guests who make every night worth remembering.",
   "Let the music take over, lose yourself in every beat, and enjoy an experience created for those who appreciate unforgettable nights.",
 ];
 

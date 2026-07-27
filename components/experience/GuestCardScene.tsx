@@ -1,8 +1,14 @@
 "use client";
 
 import { Canvas, type ThreeEvent, useFrame } from "@react-three/fiber";
-import { Environment, Float, RoundedBox, Text } from "@react-three/drei";
-import { useRef, useState } from "react";
+import {
+  Environment,
+  Float,
+  RoundedBox,
+  Text,
+  useTexture,
+} from "@react-three/drei";
+import { Suspense, useRef, useState } from "react";
 import * as THREE from "three";
 import type { Invitation } from "@/data/invitations";
 
@@ -11,6 +17,7 @@ function Card({ invitation }: { invitation: Invitation }) {
   const [flipped, setFlipped] = useState(false);
   const [dragging, setDragging] = useState(false);
   const pointer = useRef({ x: 0, y: 0 });
+  const artwork = useTexture("/media/sistek-fever-background.webp");
 
   useFrame((state, delta) => {
     if (!group.current) return;
@@ -61,9 +68,10 @@ function Card({ invitation }: { invitation: Invitation }) {
           <meshPhysicalMaterial
             clearcoat={0.78}
             clearcoatRoughness={0.22}
-            color="#090909"
-            metalness={0.72}
-            roughness={0.24}
+            color="#e8ffff"
+            map={artwork}
+            metalness={0.52}
+            roughness={0.34}
           />
         </RoundedBox>
 
@@ -71,7 +79,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           <Text
             anchorX="left"
             anchorY="top"
-            color="#f2efe8"
+            color="#f7f1e5"
             fontSize={0.17}
             letterSpacing={0.18}
             position={[-1.42, 0.78, 0]}
@@ -80,7 +88,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           </Text>
           <Text
             anchorX="left"
-            color="#c58a42"
+            color="#ff9d20"
             fontSize={0.18}
             letterSpacing={0.08}
             position={[-1.42, 0.2, 0]}
@@ -89,7 +97,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           </Text>
           <Text
             anchorX="left"
-            color="#f2efe8"
+            color="#f7f1e5"
             fontSize={0.14}
             letterSpacing={0.04}
             position={[-1.42, -0.62, 0]}
@@ -98,7 +106,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           </Text>
           <Text
             anchorX="left"
-            color="#a8a49b"
+            color="#c8e5e6"
             fontSize={0.095}
             letterSpacing={0.08}
             position={[-1.42, -0.82, 0]}
@@ -107,7 +115,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           </Text>
           <Text
             anchorX="right"
-            color="#6e4d25"
+            color="#ff9d20"
             fontSize={0.48}
             position={[1.37, -0.72, 0]}
           >
@@ -119,7 +127,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           <Text
             anchorX="left"
             anchorY="top"
-            color="#f2efe8"
+            color="#f7f1e5"
             fontSize={0.16}
             letterSpacing={0.18}
             position={[-1.42, 0.78, 0]}
@@ -127,18 +135,18 @@ function Card({ invitation }: { invitation: Invitation }) {
             FEVER
           </Text>
           <Text
-            color="#c58a42"
+            color="#ff9d20"
             fontSize={0.17}
             letterSpacing={0.06}
             position={[0, 0.32, 0]}
           >
             LIFETIME VIP ACCESS
           </Text>
-          <Text color="#f2efe8" fontSize={0.5} position={[0, -0.05, 0]}>
+          <Text color="#f7f1e5" fontSize={0.5} position={[0, -0.05, 0]}>
             {String(invitation.complimentaryShots).padStart(2, "0")}
           </Text>
           <Text
-            color="#a8a49b"
+            color="#c8e5e6"
             fontSize={0.12}
             letterSpacing={0.06}
             position={[0, -0.46, 0]}
@@ -146,7 +154,7 @@ function Card({ invitation }: { invitation: Invitation }) {
             COMPLIMENTARY SHOTS
           </Text>
           <Text
-            color="#6e4d25"
+            color="#ff9d20"
             fontSize={0.1}
             letterSpacing={0.12}
             position={[0, -0.72, 0]}
@@ -186,7 +194,9 @@ export default function GuestCardScene({
         position={[2.5, 3, 3]}
       />
       <pointLight color="#ffffff" intensity={5} position={[-3, 0, 2]} />
-      <Card invitation={invitation} />
+      <Suspense fallback={null}>
+        <Card invitation={invitation} />
+      </Suspense>
       {!lowPower && <Environment preset="night" />}
     </Canvas>
   );

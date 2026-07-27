@@ -29,12 +29,13 @@ body {
       rgba(255, 157, 32, 0.18),
       transparent 30%
     ),
-    #062c39 url("/media/sistek-fever-background.png") center top / cover fixed;
+    #062c39 url("/media/sistek-fever-background.webp") center top / cover fixed;
   color: var(--warm-white);
   font-family: var(--font-sans), "Helvetica Neue", sans-serif;
   font-weight: 400;
   min-width: 320px;
   overflow-x: hidden;
+  overflow-y: auto;
   overscroll-behavior-x: none;
 }
 
@@ -62,15 +63,17 @@ a:focus-visible {
 .fever-experience {
   background:
     linear-gradient(180deg, rgba(3, 29, 40, 0.2), rgba(3, 25, 35, 0.7)),
-    url("/media/sistek-fever-background.png") center top / cover fixed;
+    url("/media/sistek-fever-background.webp") center top / cover fixed;
   min-height: 100svh;
   overflow: visible;
   position: relative;
+  touch-action: pan-y;
 }
 
 .experience-content {
   margin: 0 auto;
   max-width: 1180px;
+  overflow: visible;
   position: relative;
 }
 
@@ -160,7 +163,7 @@ a:focus-visible {
   align-items: center;
   background:
     linear-gradient(180deg, rgba(3, 32, 43, 0.72), rgba(4, 20, 28, 0.88)),
-    url("/media/sistek-fever-background.png") center 28% / cover;
+    url("/media/sistek-fever-background.webp") center 28% / cover;
   display: flex;
   flex-direction: column;
   inset: 0;
@@ -171,6 +174,136 @@ a:focus-visible {
     max(1.5rem, env(safe-area-inset-bottom));
   position: fixed;
   z-index: 80;
+}
+
+.guest-details {
+  align-items: center;
+  background:
+    linear-gradient(145deg, rgba(3, 33, 44, 0.88), rgba(4, 21, 29, 0.96)),
+    url("/media/sistek-fever-background.webp") center / cover;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  min-height: 100svh;
+  overflow-y: auto;
+  padding: max(2rem, env(safe-area-inset-top)) var(--page-pad)
+    max(2rem, env(safe-area-inset-bottom));
+  position: fixed;
+  touch-action: pan-y;
+  z-index: 80;
+}
+
+.guest-details-art {
+  background: radial-gradient(circle, rgba(255, 157, 32, 0.2), transparent 67%);
+  filter: blur(14px);
+  height: min(70vw, 520px);
+  pointer-events: none;
+  position: absolute;
+  width: min(70vw, 520px);
+}
+
+.guest-details-form {
+  backdrop-filter: blur(24px) saturate(150%);
+  background: linear-gradient(
+    145deg,
+    rgba(4, 55, 68, 0.56),
+    rgba(3, 26, 35, 0.66)
+  );
+  border: 1px solid rgba(247, 241, 229, 0.22);
+  border-radius: 24px;
+  display: grid;
+  gap: 1rem;
+  max-width: 430px;
+  padding: clamp(1.4rem, 5vw, 2.2rem);
+  position: relative;
+  width: 100%;
+}
+
+.guest-details-form > p,
+.guest-details-form > span,
+.guest-details-form label > span,
+.guest-details-form small {
+  color: var(--muted-white);
+  font-size: 0.48rem;
+  letter-spacing: 0.18em;
+}
+
+.guest-details-form > p {
+  color: var(--amber);
+  margin: 0 0 0.5rem;
+}
+
+.guest-details-form h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.4rem, 15vw, 5.8rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.78;
+  margin: 0 0 1rem;
+}
+
+.guest-details-form > span {
+  margin-bottom: 1.8rem;
+}
+
+.guest-details-form label {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.guest-details-form input {
+  appearance: none;
+  backdrop-filter: blur(14px) saturate(135%);
+  background: rgba(7, 63, 77, 0.38);
+  border: 1px solid var(--hairline);
+  border-radius: 13px;
+  color: var(--warm-white);
+  font: inherit;
+  min-height: 50px;
+  outline: none;
+  padding: 0.7rem 0.85rem;
+}
+
+.guest-details-form input:focus {
+  border-color: var(--amber);
+}
+
+.guest-details-form button {
+  backdrop-filter: blur(14px) saturate(135%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 172, 50, 0.96),
+    rgba(243, 113, 26, 0.94)
+  );
+  border: 1px solid rgba(255, 235, 196, 0.58);
+  border-radius: 13px;
+  color: #092631;
+  cursor: pointer;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-top: 1.3rem;
+  min-height: 54px;
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.guest-details-form button:hover {
+  box-shadow: 0 12px 34px rgba(255, 144, 28, 0.28);
+  transform: translateY(-1px);
+}
+
+.guest-details-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.guest-details-form small {
+  line-height: 1.5;
+  margin-top: 0.8rem;
+  text-align: center;
 }
 
 .gate-light {
@@ -231,6 +364,16 @@ a:focus-visible {
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   margin: 0 0 1.6rem;
+}
+
+.gate-recipient small {
+  color: var(--muted-white);
+  display: block;
+  font-size: 0.48rem;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  margin: 1.65rem auto 0;
+  max-width: 19rem;
 }
 
 .gate-recipient h1 {
@@ -335,8 +478,6 @@ a:focus-visible {
 
 .hold-ring-progress {
   stroke: var(--amber);
-  stroke-dasharray: 352;
-  stroke-dashoffset: calc(352 - 352 * var(--hold-progress));
   transition: stroke-dashoffset 30ms linear;
 }
 
@@ -371,13 +512,53 @@ a:focus-visible {
   align-items: center;
   background:
     linear-gradient(120deg, rgba(2, 37, 49, 0.83), rgba(3, 23, 32, 0.58)),
-    url("/media/sistek-fever-background.png") center / cover fixed;
+    url("/media/sistek-fever-background.webp") center / cover fixed;
   display: flex;
   justify-content: center;
   min-height: 100svh;
   overflow: hidden;
   padding: var(--page-pad);
   position: relative;
+}
+
+.recognition-auto {
+  align-items: center;
+  background:
+    linear-gradient(120deg, rgba(2, 37, 49, 0.88), rgba(3, 23, 32, 0.78)),
+    url("/media/sistek-fever-background.webp") center / cover fixed;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: var(--page-pad);
+  position: fixed;
+  text-align: center;
+  touch-action: none;
+  z-index: 80;
+}
+
+.recognition-auto p {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.recognition-auto p span {
+  color: var(--muted-white);
+  display: block;
+  font-size: clamp(0.62rem, 2.6vw, 0.9rem);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.2rem;
+}
+
+.recognition-auto p strong {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.7rem, 17vw, 9rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.86;
 }
 
 .recognition-scene::after {
@@ -519,10 +700,11 @@ a:focus-visible {
 .vip-card {
   aspect-ratio: 1.6 / 1;
   background:
-    radial-gradient(circle at 78% 18%, rgba(255, 157, 32, 0.3), transparent 28%),
-    linear-gradient(130deg, rgba(6, 73, 89, 0.94) 0%, rgba(3, 35, 45, 0.95) 48%, rgba(226, 94, 21, 0.72) 130%);
+    linear-gradient(135deg, rgba(2, 37, 49, 0.34), rgba(4, 39, 48, 0.66)),
+    url("/media/sistek-fever-background.webp") center / cover;
   border: 1px solid rgba(247, 241, 229, 0.34);
   border-radius: 18px;
+  backdrop-filter: blur(18px) saturate(135%);
   box-shadow:
     0 38px 80px rgba(0, 18, 25, 0.58),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -822,7 +1004,11 @@ a:focus-visible {
 .privileges-section {
   align-items: center;
   background:
-    radial-gradient(circle at center, rgba(255, 157, 32, 0.19), transparent 43%),
+    radial-gradient(
+      circle at center,
+      rgba(255, 157, 32, 0.19),
+      transparent 43%
+    ),
     linear-gradient(rgba(3, 29, 40, 0.8), rgba(3, 29, 40, 0.8));
   display: flex;
   flex-direction: column;
@@ -891,9 +1077,13 @@ a:focus-visible {
 }
 
 .media-frame img {
+  height: 100%;
   filter: saturate(0.78) contrast(1.1) brightness(0.72);
   object-fit: cover;
+  position: absolute;
+  inset: 0;
   transform: scale(1.04);
+  width: 100%;
 }
 
 .media-grade {
@@ -963,6 +1153,13 @@ a:focus-visible {
   line-height: 0.57;
 }
 
+.anniversary-count .anniversary-number {
+  font-family: var(--font-sans), "Helvetica Neue", sans-serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: 500;
+  letter-spacing: -0.14em;
+}
+
 .anniversary-count h2 {
   align-self: end;
   font-family: var(--font-display), Georgia, serif;
@@ -976,7 +1173,7 @@ a:focus-visible {
   align-items: center;
   background:
     linear-gradient(180deg, rgba(3, 27, 37, 0.86), rgba(4, 22, 30, 0.94)),
-    url("/media/sistek-fever-background.png") center bottom / cover fixed;
+    url("/media/sistek-fever-background.webp") center bottom / cover fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1036,8 +1233,10 @@ a:focus-visible {
   --magnet-x: 0px;
   --magnet-y: 0px;
   align-items: center;
-  background: transparent;
+  backdrop-filter: blur(16px) saturate(135%);
+  background: rgba(4, 43, 55, 0.34);
   border: 1px solid var(--hairline);
+  border-radius: 14px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -1158,7 +1357,10 @@ a:focus-visible {
 
 .qr-frame {
   align-items: center;
+  backdrop-filter: blur(18px) saturate(135%);
+  background: rgba(4, 43, 55, 0.3);
   border: 1px solid var(--hairline);
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -1241,6 +1443,7 @@ a:focus-visible {
   backdrop-filter: blur(14px);
   background: rgba(4, 44, 56, 0.68);
   border: 1px solid var(--hairline);
+  border-radius: 999px;
   bottom: max(1rem, env(safe-area-inset-bottom));
   display: flex;
   gap: 0.5rem;
@@ -1259,9 +1462,13 @@ a:focus-visible {
 .invalid-invitation {
   align-items: center;
   background:
-    radial-gradient(circle at center, rgba(255, 157, 32, 0.16), transparent 34%),
+    radial-gradient(
+      circle at center,
+      rgba(255, 157, 32, 0.16),
+      transparent 34%
+    ),
     linear-gradient(rgba(3, 29, 40, 0.82), rgba(3, 29, 40, 0.82)),
-    url("/media/sistek-fever-background.png") center / cover;
+    url("/media/sistek-fever-background.webp") center / cover;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1305,6 +1512,145 @@ a:focus-visible {
 .low-performance .story-card-halo {
   filter: none;
   opacity: 0.5;
+}
+
+@media (max-width: 699px) {
+  body {
+    background-attachment: scroll;
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+  }
+
+  .fever-experience {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 29, 40, 0.82),
+      rgba(3, 25, 35, 0.94)
+    );
+  }
+
+  .grain-overlay {
+    display: none;
+  }
+
+  .recognition-scene {
+    background: rgba(3, 35, 45, 0.5);
+    min-height: 58svh;
+    padding: 4.5rem var(--page-pad);
+  }
+
+  .recognition-auto {
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: 100% auto;
+  }
+
+  .recognition-scene p strong {
+    font-size: clamp(3.35rem, 15vw, 5.4rem);
+    line-height: 0.92;
+  }
+
+  .card-reveal-section {
+    background: rgba(3, 31, 42, 0.62);
+    min-height: auto;
+    padding-bottom: 5rem;
+  }
+
+  .card-scene-shell {
+    height: min(68vw, 310px);
+    margin-top: 4rem;
+  }
+
+  .card-reveal-copy {
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .card-reveal-copy h2 {
+    font-size: clamp(3.5rem, 16vw, 5.2rem);
+  }
+
+  .card-instruction {
+    margin-top: 2rem;
+  }
+
+  .storytelling-section {
+    display: block;
+    min-height: auto;
+  }
+
+  .story-card-column {
+    display: none;
+  }
+
+  .story-panels {
+    display: grid;
+    gap: 1px;
+  }
+
+  .story-panel {
+    background: rgba(3, 32, 43, 0.56);
+    min-height: 42svh;
+    padding: 4rem var(--page-pad);
+  }
+
+  .story-panel:nth-child(even) {
+    text-align: left;
+  }
+
+  .story-phrase {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+    line-height: 0.94;
+  }
+
+  .invitation-letter {
+    gap: 3.5rem;
+    margin: 0 var(--page-pad);
+    padding: 5rem 0;
+  }
+
+  .letter-body {
+    gap: 2rem;
+  }
+
+  .letter-body p {
+    font-size: clamp(1.55rem, 7vw, 2.25rem);
+  }
+
+  .privileges-section,
+  .invitation-closing,
+  .accepted-state {
+    background: rgba(3, 29, 40, 0.76);
+    min-height: auto;
+  }
+
+  .privileges-section {
+    padding-bottom: 4rem;
+    padding-top: 5rem;
+  }
+
+  .privilege-stage {
+    min-height: 68svh;
+  }
+
+  .anniversary-sequence {
+    background: rgba(3, 27, 37, 0.76);
+    padding: 5rem 0 7rem;
+  }
+
+  .media-frame {
+    height: min(72svh, 620px);
+  }
+
+  .anniversary-count {
+    margin-top: 7rem;
+  }
+
+  .invitation-closing {
+    padding-bottom: 6rem;
+    padding-top: 6rem;
+  }
 }
 
 @media (min-width: 700px) {

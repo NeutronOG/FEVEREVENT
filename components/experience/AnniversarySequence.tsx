@@ -1,6 +1,6 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
-import Image from "next/image";
 import { motion } from "motion/react";
 import type { Invitation } from "@/data/invitations";
 
@@ -14,12 +14,10 @@ export function AnniversarySequence({
   return (
     <section className="anniversary-sequence">
       <div className="media-frame">
-        <Image
+        <img
           alt="Abstract atmospheric artwork in motion"
-          fill
           loading="lazy"
-          sizes="(max-width: 768px) 100vw, 900px"
-          src="/media/sistek-fever-background.png"
+          src="/media/sistek-fever-background.webp"
         />
         <div aria-hidden="true" className="media-grade" />
         <div className="media-words">
@@ -37,17 +35,18 @@ export function AnniversarySequence({
         </div>
       </div>
       <div className="anniversary-count">
-        <span>EST. · MMXVIII</span>
+        <span>EST. · MMXXV</span>
         <motion.strong
+          className="anniversary-number"
           initial={{ opacity: 0, y: 80, filter: "blur(14px)" }}
           transition={{ duration: 1.2 }}
           viewport={{ amount: 0.6, once: true }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         >
-          {invitation.anniversaryYears}
+          {invitation.anniversaryYear}
         </motion.strong>
         <h2>
-          YEARS
+          YEAR
           <br />
           OF FEVER
         </h2>

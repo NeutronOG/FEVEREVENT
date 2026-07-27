@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 const DEVICE_ID_KEY = "fever-visitor-device-id";
 const VISIT_COUNTER_URL =
-  process.env.NEXT_PUBLIC_VISIT_COUNTER_URL ??
-  "https://fever-honored-guest.hutec.chatgpt.site/api/visits";
+  process.env.NEXT_PUBLIC_VISIT_COUNTER_URL ?? "/api/visits";
 
 function getDeviceId() {
   try {
@@ -24,6 +23,10 @@ export function useGlobalVisitorCount() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+      return;
+    }
+
     const controller = new AbortController();
     const deviceId = getDeviceId();
     const request = deviceId

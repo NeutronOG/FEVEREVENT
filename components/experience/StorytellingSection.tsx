@@ -3,8 +3,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GuestCardFallback } from "./GuestCardFallback";
-import type { Invitation } from "@/data/invitations";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const phrases = [
@@ -14,21 +12,16 @@ const phrases = [
   "YOU HELPED CREATE THE NIGHTS WE REMEMBER.",
 ];
 
-export function StorytellingSection({
-  invitation,
-}: {
-  invitation: Invitation;
-}) {
+export function StorytellingSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
   useEffect(() => {
-    if (reduced || !sectionRef.current || !cardRef.current) return;
+    if (reduced || !sectionRef.current) return;
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
       const panels = gsap.utils.toArray<HTMLElement>(".story-panel");
-      panels.forEach((panel, index) => {
+      panels.forEach((panel) => {
         const text = panel.querySelector(".story-phrase");
         gsap.fromTo(
           text,
@@ -45,18 +38,6 @@ export function StorytellingSection({
             },
           },
         );
-        gsap.to(cardRef.current, {
-          rotationY: index % 2 === 0 ? -7 : 8,
-          rotationX: index * -1.5,
-          x: index === 3 ? 10 : index % 2 === 0 ? -8 : 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 70%",
-            end: "bottom 40%",
-            scrub: true,
-          },
-        });
       });
     }, sectionRef);
 
@@ -65,12 +46,6 @@ export function StorytellingSection({
 
   return (
     <section className="storytelling-section" ref={sectionRef}>
-      <div className="story-card-column">
-        <div className="story-card-sticky" ref={cardRef}>
-          <GuestCardFallback invitation={invitation} />
-          <div aria-hidden="true" className="story-card-halo" />
-        </div>
-      </div>
       <div className="story-panels">
         {phrases.map((phrase, index) => (
           <div className="story-panel" key={phrase}>

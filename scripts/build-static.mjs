@@ -6,6 +6,7 @@ const root = process.cwd();
 const vinext = process.platform === "win32" ? "vinext.cmd" : "vinext";
 
 process.env.WRANGLER_LOG_PATH ??= ".wrangler/wrangler.log";
+process.env.STATIC_EXPORT = "true";
 
 const build = spawnSync(vinext, ["build"], {
   cwd: root,

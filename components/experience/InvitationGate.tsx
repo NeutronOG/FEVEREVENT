@@ -21,18 +21,23 @@ export function InvitationGate({ invitation, onEnter }: InvitationGateProps) {
       <div aria-hidden="true" className="gate-light" />
       <header className="gate-header">
         <span>FEVER ANNIVERSARY</span>
-        <span>PRIVATE INVITATION · {invitation.anniversaryYears} YEARS</span>
+        <span>PRIVATE INVITATION · {invitation.anniversaryYear} YEAR</span>
       </header>
 
       <div className="gate-recipient">
-        <p>THIS INVITATION BELONGS TO</p>
-        <h1>{invitation.firstName.toLocaleUpperCase("es-MX")}</h1>
+        <p>YOUR PRIVATE INVITATION</p>
+        <h1>
+          MAKE IT
+          <br />
+          YOURS.
+        </h1>
+        <small>YOUR DETAILS WILL CREATE YOUR HONORED GUEST INVITATION</small>
         <span className="recipient-line" />
       </div>
 
       <div className="gate-action">
         <HoldButton onComplete={onEnter} />
-        <p>PRESS AND HOLD</p>
+        <p>PRESS &amp; HOLD TO CREATE YOUR INVITATION</p>
       </div>
 
       <footer className="gate-footer">

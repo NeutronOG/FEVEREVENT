@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { LoadingExperience } from "./LoadingExperience";
 import { InvitationGate } from "./InvitationGate";
 import { RecognitionSequence } from "./RecognitionSequence";
@@ -19,15 +19,20 @@ import { useAmbientAudio } from "@/hooks/useAmbientAudio";
 import { useDevicePerformance } from "@/hooks/useDevicePerformance";
 import { useInvitationState } from "@/hooks/useInvitationState";
 import { useGlobalVisitorCount } from "@/hooks/useGlobalVisitorCount";
+import { registerGuest, type RegisteredGuest } from "@/lib/guest-registration";
+import { GuestDetailsForm, type GuestDetails } from "./GuestDetailsForm";
 
 export function InvitationExperience({
   invitation,
 }: {
   invitation: Invitation;
 }) {
-  const [phase, setPhase] = useState<"loading" | "gate" | "experience">(
-    "loading",
-  );
+  const [phase, setPhase] = useState<
+    "loading" | "gate" | "details" | "recognition" | "experience"
+  >("loading");
+  const [guestDetails, setGuestDetails] = useState<GuestDetails | null>(null);
+  const [registeredGuest, setRegisteredGuest] =
+    useState<RegisteredGuest | null>(null);
   const { accepted, accept } = useInvitationState(invitation.token);
   const audio = useAmbientAudio();
   const lowPower = useDevicePerformance();
@@ -38,11 +43,30 @@ export function InvitationExperience({
     return () => window.clearTimeout(timer);
   }, []);
 
-  const enter = () => {
+  const openDetails = () => {
+    setPhase("details");
+  };
+
+  const enter = async (details: GuestDetails) => {
+    const guest = await registerGuest(invitation.token, details);
+    setGuestDetails(details);
+    setRegisteredGuest(guest);
     audio.start();
+    setPhase("recognition");
+  };
+
+  const startExperience = useCallback(() => {
     setPhase("experience");
     window.setTimeout(() => window.scrollTo({ top: 0 }), 50);
-  };
+  }, []);
+
+  const personalizedInvitation = guestDetails
+    ? {
+        ...invitation,
+        firstName: guestDetails.firstName,
+        fullName: `${guestDetails.firstName} ${guestDetails.lastName}`,
+      }
+    : invitation;
 
   const handleAccept = () => {
     accept();
@@ -59,7 +83,17 @@ export function InvitationExperience({
       <AnimatePresence mode="wait">
         {phase === "loading" && <LoadingExperience key="loading" />}
         {phase === "gate" && (
-          <InvitationGate invitation={invitation} key="gate" onEnter={enter} />
+          <InvitationGate
+            invitation={invitation}
+            key="gate"
+            onEnter={openDetails}
+          />
+        )}
+        {phase === "details" && (
+          <GuestDetailsForm key="details" onComplete={enter} />
+        )}
+        {phase === "recognition" && (
+          <RecognitionSequence key="recognition" onComplete={startExperience} />
         )}
       </AnimatePresence>
 
@@ -79,15 +113,14 @@ export function InvitationExperience({
             </span>
           </header>
           <div id="top" />
-          <RecognitionSequence />
-          <GuestCardReveal invitation={invitation} lowPower={lowPower} />
-          <StorytellingSection invitation={invitation} />
+          <GuestCardReveal invitation={personalizedInvitation} />
+          <StorytellingSection />
           <InvitationLetter />
-          <PrivilegesSection invitation={invitation} />
-          <AnniversarySequence invitation={invitation} />
+          <PrivilegesSection />
+          <AnniversarySequence invitation={personalizedInvitation} />
           <InvitationClosing
             accepted={accepted}
-            invitation={invitation}
+            invitation={personalizedInvitation}
             onAccept={handleAccept}
           />
           <AnimatePresence>
@@ -96,7 +129,10 @@ export function InvitationExperience({
                 animate={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 50 }}
               >
-                <AcceptedInvitation invitation={invitation} />
+                <AcceptedInvitation
+                  guest={registeredGuest}
+                  invitation={personalizedInvitation}
+                />
               </motion.div>
             )}
           </AnimatePresence>
