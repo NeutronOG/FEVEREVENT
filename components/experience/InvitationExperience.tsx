@@ -66,6 +66,7 @@ export function InvitationExperience({
         ...invitation,
         firstName: guestDetails.firstName,
         fullName: `${guestDetails.firstName} ${guestDetails.lastName}`,
+        memberNumber: registeredGuest?.memberNumber ?? invitation.memberNumber,
       }
     : invitation;
 

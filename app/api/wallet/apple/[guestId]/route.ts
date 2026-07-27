@@ -14,7 +14,9 @@ export async function GET(_: Request, { params }: RouteContext) {
     const supabase = getSupabaseAdmin();
     const { data: guest, error } = await supabase
       .from("honored_guests")
-      .select("id, first_name, last_name, email, qr_token, invitation_token")
+      .select(
+        "id, first_name, last_name, email, member_number, qr_token, invitation_token",
+      )
       .eq("id", guestId)
       .maybeSingle();
 
@@ -28,7 +30,7 @@ export async function GET(_: Request, { params }: RouteContext) {
 
     const walletPass = await createAppleWalletPass({
       ...guest,
-      memberNumber: invitation.memberNumber,
+      memberNumber: String(guest.member_number).padStart(4, "0"),
     });
     const update = await supabase
       .from("honored_guests")

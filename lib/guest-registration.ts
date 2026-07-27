@@ -8,6 +8,7 @@ export type GuestDetails = {
 export type RegisteredGuest = {
   id: string;
   invitationToken: string;
+  memberNumber: string;
   qrToken: string;
   walletPassStatus: "pending" | "issued";
 };

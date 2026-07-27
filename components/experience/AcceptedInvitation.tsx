@@ -19,16 +19,18 @@ export function AcceptedInvitation({
 }) {
   const [qr, setQr] = useState("");
   const cardRef = useRef<HTMLDivElement>(null);
-  const qrPayload = guest?.qrToken ?? `FEVER-${invitation.memberNumber}`;
 
   useEffect(() => {
+    const qrPayload = guest
+      ? `${window.location.origin}/verify/${guest.qrToken}`
+      : `FEVER-${invitation.memberNumber}`;
     void QRCode.toDataURL(qrPayload, {
       width: 256,
       margin: 1,
       color: { dark: "#f2efe8", light: "#050505" },
       errorCorrectionLevel: "H",
     }).then(setQr);
-  }, [qrPayload]);
+  }, [guest, invitation.memberNumber]);
 
   const saveCard = async () => {
     if (!cardRef.current) return;
@@ -38,7 +40,7 @@ export function AcceptedInvitation({
       backgroundColor: "#050505",
     });
     const link = document.createElement("a");
-    link.download = `FEVER-${invitation.memberNumber}.png`;
+    link.download = `FEVER-${guest?.memberNumber ?? invitation.memberNumber}.png`;
     link.href = dataUrl;
     link.click();
   };
@@ -75,7 +77,7 @@ export function AcceptedInvitation({
               src={qr}
             />
           ) : null}
-          <span>FEVER · {invitation.memberNumber}</span>
+          <span>FEVER · {guest?.memberNumber ?? invitation.memberNumber}</span>
         </div>
       </div>
 

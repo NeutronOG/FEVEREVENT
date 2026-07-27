@@ -12,6 +12,11 @@ type HonoredGuest = {
   memberNumber: string;
 };
 
+function publicSiteUrl() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  return (siteUrl || "https://www.feverevent.store").replace(/\/$/, "");
+}
+
 function required(name: string) {
   const value = process.env[name]?.trim();
   if (!value) throw new Error(`${name} is not configured.`);
@@ -85,7 +90,6 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
       foregroundColor: "rgb(247, 241, 229)",
       formatVersion: 1,
       labelColor: "rgb(255, 157, 32)",
-      logoText: "HONORED GUEST",
       organizationName: "FEVER",
       passTypeIdentifier,
       serialNumber,
@@ -96,24 +100,19 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
 
   pass.type = "generic";
   pass.headerFields.push({
-    key: "edition",
-    label: "FEVER / PRIVATE EDITION",
-    value: `∞  MEMBER ${guest.memberNumber}`,
+    key: "member",
+    label: "MEMBER",
+    value: `#${guest.memberNumber}`,
   });
   pass.primaryFields.push({
     key: "honoredGuest",
-    label: "THIS NIGHT IS YOURS",
+    label: "HONORED GUEST",
     value: `${guest.first_name} ${guest.last_name}`.toUpperCase(),
   });
   pass.secondaryFields.push(
-    { key: "status", label: "YOUR STATUS", value: "HONORED GUEST" },
-    { key: "access", label: "AFTER DARK", value: "LIFETIME VIP" },
+    { key: "access", label: "YOUR ACCESS", value: "LIFETIME VIP" },
+    { key: "privilege", label: "YOUR PRIVILEGE", value: "2 SHOTS / VISIT" },
   );
-  pass.auxiliaryFields.push({
-    key: "ritual",
-    label: "YOUR RITUAL",
-    value: "2 SHOTS · EVERY VISIT",
-  });
   pass.backFields.push(
     {
       key: "note",
@@ -131,9 +130,9 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
   );
 
   pass.setBarcodes({
-    altText: "FEVER HONORED GUEST",
+    altText: `FEVER · MEMBER ${guest.memberNumber}`,
     format: "PKBarcodeFormatQR",
-    message: `FEVER:${guest.qr_token}`,
+    message: `${publicSiteUrl()}/verify/${guest.qr_token}`,
     messageEncoding: "iso-8859-1",
   });
 

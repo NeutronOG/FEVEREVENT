@@ -49,8 +49,9 @@ export async function POST(request: Request) {
     const supabase = getSupabaseAdmin();
     const { data: existing, error: lookupError } = await supabase
       .from("honored_guests")
-      .select("id, qr_token, wallet_pass_status")
+      .select("id, member_number, qr_token, wallet_pass_status")
       .eq("invitation_token", invitationToken)
+      .eq("email", email)
       .maybeSingle();
 
     if (lookupError) throw lookupError;
@@ -69,12 +70,16 @@ export async function POST(request: Request) {
           .from("honored_guests")
           .update(record)
           .eq("id", existing.id)
-          .select("id, invitation_token, qr_token, wallet_pass_status")
+          .select(
+            "id, invitation_token, member_number, qr_token, wallet_pass_status",
+          )
           .single()
       : await supabase
           .from("honored_guests")
           .insert(record)
-          .select("id, invitation_token, qr_token, wallet_pass_status")
+          .select(
+            "id, invitation_token, member_number, qr_token, wallet_pass_status",
+          )
           .single();
 
     if (result.error || !result.data)
@@ -83,6 +88,7 @@ export async function POST(request: Request) {
     return Response.json({
       id: result.data.id,
       invitationToken: result.data.invitation_token,
+      memberNumber: String(result.data.member_number).padStart(4, "0"),
       qrToken: result.data.qr_token,
       walletPassStatus: result.data.wallet_pass_status,
     });
