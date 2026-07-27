@@ -7,7 +7,7 @@ type InvitationPageProps = {
 };
 
 export const metadata: Metadata = {
-  title: "FEVER — Honored Guest",
+  title: "FEVER — Private Invitation",
   description:
     "A private invitation for the guests who make every night worth remembering.",
   robots: {

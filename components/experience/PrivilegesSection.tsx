@@ -53,7 +53,7 @@ export function PrivilegesSection() {
   return (
     <section className="privileges-section" ref={sectionRef}>
       <p className="privileges-title">
-        YOUR HONORED GUEST CARD INCLUDES EXCLUSIVE PRIVILEGES:
+        YOUR CARD INCLUDES EXCLUSIVE PRIVILEGES:
       </p>
       <div className="privilege-stage">
         <div className="privilege privilege-lifetime" ref={symbolRef}>

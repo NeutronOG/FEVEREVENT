@@ -31,13 +31,13 @@ export function InvitationGate({ invitation, onEnter }: InvitationGateProps) {
           <br />
           YOURS.
         </h1>
-        <small>YOUR DETAILS WILL CREATE YOUR HONORED GUEST INVITATION</small>
+        <small>YOUR DETAILS WILL CREATE YOUR INVITATION</small>
         <span className="recipient-line" />
       </div>
 
       <div className="gate-action">
         <HoldButton onComplete={onEnter} />
-        <p>PRESS &amp; HOLD FOR 1 SECOND TO CREATE YOUR INVITATION</p>
+        <p>PRESS &amp; HOLD TO CREATE YOUR INVITATION</p>
       </div>
 
       <footer className="gate-footer">

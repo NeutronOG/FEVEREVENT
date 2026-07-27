@@ -23,7 +23,7 @@ export const invitations: Record<string, Invitation> = {
     eventDate: "Saturday, August 22, 2026",
     eventTime: "10:30 PM",
     venueName: "FEVER",
-    venueAddress: "Private location · Details reserved for honored guests",
+    venueAddress: "Private location · Details reserved for invited guests",
     status: "pending",
     vipAccess: "lifetime",
     complimentaryShots: 2,

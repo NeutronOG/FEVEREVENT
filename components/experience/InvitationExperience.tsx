@@ -113,9 +113,7 @@ export function InvitationExperience({
                 width={567}
               />
             </a>
-            <span>
-              HONORED GUESTS · {String(visitorCount).padStart(4, "0")}
-            </span>
+            <span>FEVER · {String(visitorCount).padStart(4, "0")}</span>
           </header>
           <div id="top" />
           <GuestCardReveal invitation={personalizedInvitation} />

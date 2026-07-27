@@ -27,17 +27,13 @@ export function GuestCardReveal({
         </div>
       </motion.div>
       <div className="card-reveal-copy">
-        <h2>
-          HONORED
-          <br />
-          GUEST
-        </h2>
+        <h2>GUEST</h2>
         <p>
           A permanent recognition, reserved for the people who changed the
           atmosphere simply by being there.
         </p>
       </div>
-      <p className="card-instruction">YOUR PERSONAL HONORED GUEST CARD</p>
+      <p className="card-instruction">YOUR PERSONAL CARD</p>
     </section>
   );
 }

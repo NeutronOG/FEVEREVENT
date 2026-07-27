@@ -3,7 +3,7 @@ import path from "node:path";
 import forge from "node-forge";
 import { PKPass } from "passkit-generator";
 
-type HonoredGuest = {
+type GuestPass = {
   id: string;
   first_name: string;
   last_name: string;
@@ -63,11 +63,11 @@ function passSigningCertificates() {
   };
 }
 
-export async function createAppleWalletPass(guest: HonoredGuest) {
+export async function createAppleWalletPass(guest: GuestPass) {
   const teamIdentifier = required("APPLE_TEAM_ID");
   const passTypeIdentifier = required("APPLE_PASS_TYPE_IDENTIFIER");
-  // A new serial makes Wallet install this corrected pass instead of reusing
-  // the earlier version that still contained the HONORED GUEST header.
+  // A new serial makes Wallet install the corrected pass instead of reusing
+  // an earlier version.
   const serialNumber = `FEVER-${guest.id}-guest`;
   const icon = await readFile(path.join(process.cwd(), "public", "favicon.png"));
   const background = await readFile(
@@ -107,14 +107,9 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
   );
 
   pass.type = "generic";
-  pass.headerFields.push({
-    key: "member",
-    label: "MEMBER",
-    value: `#${guest.memberNumber}`,
-  });
   pass.primaryFields.push({
     key: "guest",
-    label: "GUEST",
+    label: "",
     value: `${guest.first_name} ${guest.last_name}`.toUpperCase(),
   });
   pass.secondaryFields.push(

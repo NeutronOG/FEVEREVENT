@@ -14,11 +14,7 @@ export function InvitationLetter() {
     <section className="invitation-letter">
       <div className="letter-heading">
         <span>FEVER · PRIVATE CORRESPONDENCE</span>
-        <h2>
-          HONORED
-          <br />
-          GUEST
-        </h2>
+        <h2>GUEST</h2>
       </div>
       <div className="letter-body">
         {paragraphs.map((paragraph, index) => (

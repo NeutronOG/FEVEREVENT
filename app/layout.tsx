@@ -15,7 +15,7 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "FEVER — Honored Guest",
+  title: "FEVER — Private Invitation",
   description:
     "A private invitation for the guests who make every night worth remembering.",
   applicationName: "FEVER Private Invitation",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
   },
   openGraph: {
-    title: "FEVER — Honored Guest",
+    title: "FEVER — Private Invitation",
     description:
       "Some invitations are given. Others are earned. A private invitation from FEVER.",
     type: "website",
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1731,
         height: 909,
-        alt: "FEVER Honored Guest private invitation",
+        alt: "FEVER private invitation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FEVER — Honored Guest",
+    title: "FEVER — Private Invitation",
     description:
       "Some invitations are given. Others are earned. A private invitation from FEVER.",
     images: ["/og.png"],
