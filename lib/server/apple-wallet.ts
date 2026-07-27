@@ -92,7 +92,7 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
     {
       authenticationToken: guest.qr_token,
       backgroundColor: "rgb(0, 132, 151)",
-      description: "FEVER Honored Guest Card",
+      description: "FEVER Guest Card",
       foregroundColor: "rgb(247, 241, 229)",
       formatVersion: 1,
       labelColor: "rgb(255, 157, 32)",
@@ -111,8 +111,8 @@ export async function createAppleWalletPass(guest: HonoredGuest) {
     value: `#${guest.memberNumber}`,
   });
   pass.primaryFields.push({
-    key: "honoredGuest",
-    label: "HONORED GUEST",
+    key: "guest",
+    label: "GUEST",
     value: `${guest.first_name} ${guest.last_name}`.toUpperCase(),
   });
   pass.secondaryFields.push(

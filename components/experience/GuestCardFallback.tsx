@@ -50,7 +50,6 @@ export function GuestCardFallback({
         width={567}
       />
       <div className="card-title">
-        <small>HONORED</small>
         <strong>GUEST</strong>
       </div>
       <div className="card-person">

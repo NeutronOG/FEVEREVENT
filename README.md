@@ -29,8 +29,6 @@ in `.env.example`.
   asset is supplied. Guidance is in `public/brand/README.md`.
 - **Photos and video:** Replace `public/media/fever-atmosphere.webp` and follow
   `public/media/README.md` for sizes and formats.
-- **Audio:** The current ambient tone is generated only after interaction.
-  Approved files can be added according to `public/audio/README.md`.
 - **Card texture:** Adjust the physical material in `GuestCardScene.tsx` and the
   matching CSS surface in `GuestCardFallback.tsx`.
 - **Social preview:** Replace `public/og.png` with a 1200 × 630 approved campaign

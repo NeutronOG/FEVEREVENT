@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const HOLD_DURATION = 1800;
+const HOLD_DURATION = 1000;
 const RING_CIRCUMFERENCE = 352;
 
 export function HoldButton({ onComplete }: { onComplete: () => void }) {
@@ -50,7 +50,7 @@ export function HoldButton({ onComplete }: { onComplete: () => void }) {
 
   return (
     <button
-      aria-label="Hold for 1.8 seconds to enter the invitation"
+      aria-label="Hold for 1 second to enter the invitation"
       className="hold-button"
       onKeyDown={(event) => {
         if (event.key === " " || event.key === "Enter") {

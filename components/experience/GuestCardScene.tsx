@@ -93,7 +93,7 @@ function Card({ invitation }: { invitation: Invitation }) {
             letterSpacing={0.08}
             position={[-1.42, 0.2, 0]}
           >
-            HONORED GUEST
+            GUEST
           </Text>
           <Text
             anchorX="left"
