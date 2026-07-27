@@ -19,7 +19,7 @@ export function AnniversarySequence({
           fill
           loading="lazy"
           sizes="(max-width: 768px) 100vw, 900px"
-          src="/media/fever-atmosphere.webp"
+          src="/media/sistek-fever-background.png"
         />
         <div aria-hidden="true" className="media-grade" />
         <div className="media-words">
