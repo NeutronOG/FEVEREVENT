@@ -31,15 +31,16 @@ export function ExclusiveEventSequence() {
       </div>
       <div className="exclusive-event-title">
         <span>ONE NIGHT ONLY</span>
-        <motion.strong
+        <motion.img
+          alt="FEVER"
           className="exclusive-event-brand"
           initial={{ opacity: 0, y: 80, filter: "blur(14px)" }}
+          loading="lazy"
+          src="/brand/fever-logo.png"
           transition={{ duration: 1.2 }}
           viewport={{ amount: 0.6, once: true }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        >
-          FEVER
-        </motion.strong>
+        />
         <h2>
           EXCLUSIVE
           <br />

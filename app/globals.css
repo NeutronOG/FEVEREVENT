@@ -1149,20 +1149,13 @@ a:focus-visible {
   margin-bottom: 3rem;
 }
 
-.exclusive-event-title strong {
-  color: var(--amber);
-  font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(10rem, 48vw, 25rem);
-  font-weight: 400;
-  letter-spacing: -0.08em;
-  line-height: 0.57;
-}
-
 .exclusive-event-title .exclusive-event-brand {
-  font-family: var(--font-sans), "Helvetica Neue", sans-serif;
-  font-variant-numeric: lining-nums tabular-nums;
-  font-weight: 500;
-  letter-spacing: -0.14em;
+  aspect-ratio: 1;
+  height: clamp(16rem, 48vw, 32rem);
+  mix-blend-mode: screen;
+  object-fit: cover;
+  object-position: center;
+  width: clamp(16rem, 48vw, 32rem);
 }
 
 .exclusive-event-title h2 {
