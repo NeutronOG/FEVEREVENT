@@ -7,4 +7,4 @@ club moments.
 
 Keep portrait images near 1600 × 2400, full-width images near 2400 × 1600, and
 short video loops under 4 MB where possible. Preserve the filenames used by the
-components or update `AnniversarySequence.tsx`.
+components or update `ExclusiveEventSequence.tsx`.

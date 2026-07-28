@@ -1,6 +1,6 @@
 # FEVER — Honored Guest
 
-A production-minded, mobile-first private anniversary invitation for FEVER.
+A production-minded, mobile-first private invitation for an exclusive FEVER event.
 The demo invitation is available at `/invitation/AGUS0017`.
 
 ## Local development
@@ -15,7 +15,7 @@ and `npm run format` to apply the included Prettier configuration.
 
 ## Personalization
 
-Guest, membership, anniversary, and event information lives in
+Guest, membership, and event information lives in
 `data/invitations.ts`. Add a new typed record keyed by its invitation token;
 the matching private link is `/invitation/TOKEN`.
 
@@ -33,7 +33,6 @@ in `.env.example`.
   matching CSS surface in `GuestCardFallback.tsx`.
 - **Social preview:** Replace `public/og.png` with a 1200 × 630 approved campaign
   image if needed.
-- **Anniversary number:** Set `anniversaryYear` on each invitation record.
 - **Event details:** Update the typed invitation record’s date, time, venue, and
   address.
 

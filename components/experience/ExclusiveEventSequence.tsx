@@ -2,17 +2,12 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { motion } from "motion/react";
-import type { Invitation } from "@/data/invitations";
 
 const words = ["THE NIGHTS", "THE MUSIC", "THE PEOPLE"];
 
-export function AnniversarySequence({
-  invitation,
-}: {
-  invitation: Invitation;
-}) {
+export function ExclusiveEventSequence() {
   return (
-    <section className="anniversary-sequence">
+    <section className="exclusive-event-sequence">
       <div className="media-frame">
         <img
           alt="Abstract atmospheric artwork in motion"
@@ -34,21 +29,21 @@ export function AnniversarySequence({
           ))}
         </div>
       </div>
-      <div className="anniversary-count">
-        <span>EST. · MMXXV</span>
+      <div className="exclusive-event-title">
+        <span>ONE NIGHT ONLY</span>
         <motion.strong
-          className="anniversary-number"
+          className="exclusive-event-brand"
           initial={{ opacity: 0, y: 80, filter: "blur(14px)" }}
           transition={{ duration: 1.2 }}
           viewport={{ amount: 0.6, once: true }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         >
-          {invitation.anniversaryYear}
+          FEVER
         </motion.strong>
         <h2>
-          YEAR
+          EXCLUSIVE
           <br />
-          OF FEVER
+          EVENT
         </h2>
       </div>
     </section>

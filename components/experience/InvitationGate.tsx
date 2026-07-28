@@ -20,8 +20,8 @@ export function InvitationGate({ invitation, onEnter }: InvitationGateProps) {
     >
       <div aria-hidden="true" className="gate-light" />
       <header className="gate-header">
-        <span>FEVER ANNIVERSARY</span>
-        <span>PRIVATE INVITATION · {invitation.anniversaryYear} YEAR</span>
+        <span>FEVER · EXCLUSIVE EVENT</span>
+        <span>PRIVATE INVITATION</span>
       </header>
 
       <div className="gate-recipient">

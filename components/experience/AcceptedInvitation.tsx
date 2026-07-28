@@ -95,7 +95,7 @@ export function AcceptedInvitation({
       </div>
 
       <div className="event-details" id="event-details">
-        <span>ANNIVERSARY NIGHT</span>
+        <span>EXCLUSIVE EVENT</span>
         <dl>
           <div>
             <dt>DATE</dt>

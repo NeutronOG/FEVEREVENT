@@ -10,7 +10,7 @@ import { GuestCardReveal } from "./GuestCardReveal";
 import { StorytellingSection } from "./StorytellingSection";
 import { InvitationLetter } from "./InvitationLetter";
 import { PrivilegesSection } from "./PrivilegesSection";
-import { AnniversarySequence } from "./AnniversarySequence";
+import { ExclusiveEventSequence } from "./ExclusiveEventSequence";
 import { InvitationClosing } from "./InvitationClosing";
 import { AcceptedInvitation } from "./AcceptedInvitation";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
@@ -120,7 +120,7 @@ export function InvitationExperience({
           <StorytellingSection />
           <InvitationLetter />
           <PrivilegesSection />
-          <AnniversarySequence invitation={personalizedInvitation} />
+          <ExclusiveEventSequence />
           <InvitationClosing
             accepted={accepted}
             invitation={personalizedInvitation}

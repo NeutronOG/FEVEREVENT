@@ -3,7 +3,6 @@ export type Invitation = {
   firstName: string;
   fullName: string;
   memberNumber: string;
-  anniversaryYear: number;
   eventDate: string;
   eventTime: string;
   venueName: string;
@@ -19,7 +18,6 @@ export const invitations: Record<string, Invitation> = {
     firstName: "Agustín",
     fullName: "Agustín Pinaya",
     memberNumber: "0017",
-    anniversaryYear: 1,
     eventDate: "Saturday, August 22, 2026",
     eventTime: "10:30 PM",
     venueName: "FEVER",
