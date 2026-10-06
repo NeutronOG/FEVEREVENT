@@ -5,3 +5,4 @@
 - For browser layout checks, mock `/api/guests` before submitting the guest form. Do not create real guest records just to test presentation.
 - The invitation content appears after holding the entry button for one second, completing the guest form, and waiting for the recognition sequence.
 - Cormorant Garamond and Manrope are supplied by pinned `@fontsource-variable` packages and loaded with `next/font/local`. Keep builds independent of Google Fonts requests; extensionless font URLs can break Next.js font processing.
+- When verifying Motion animations in Playwright, wait for rendered transforms and opacity to settle. JavaScript fake timers alone do not reliably advance native Web Animations.
