@@ -38,12 +38,15 @@ function passSigningCertificates() {
     required("APPLE_PASS_CERTIFICATE_P12_PASSWORD"),
   );
   const certificateBags =
-    p12.getBags({ bagType: forge.pki.oids.certBag })[forge.pki.oids.certBag] ?? [];
+    p12.getBags({ bagType: forge.pki.oids.certBag })[forge.pki.oids.certBag] ??
+    [];
   const keyBags = [
     ...(p12.getBags({ bagType: forge.pki.oids.pkcs8ShroudedKeyBag })[
       forge.pki.oids.pkcs8ShroudedKeyBag
     ] ?? []),
-    ...(p12.getBags({ bagType: forge.pki.oids.keyBag })[forge.pki.oids.keyBag] ?? []),
+    ...(p12.getBags({ bagType: forge.pki.oids.keyBag })[
+      forge.pki.oids.keyBag
+    ] ?? []),
   ];
   const signerCertificate = certificateBags.find(
     (bag) =>
@@ -53,7 +56,9 @@ function passSigningCertificates() {
   const signerKey = keyBags.find((bag) => bag.key)?.key;
 
   if (!signerCertificate || !signerKey) {
-    throw new Error("The Apple Wallet .p12 does not match the configured Pass Type ID.");
+    throw new Error(
+      "The Apple Wallet .p12 does not match the configured Pass Type ID.",
+    );
   }
 
   return {
@@ -68,10 +73,17 @@ export async function createAppleWalletPass(guest: GuestPass) {
   const passTypeIdentifier = required("APPLE_PASS_TYPE_IDENTIFIER");
   // A new serial makes Wallet install the corrected pass instead of reusing
   // an earlier version.
-  const serialNumber = `FEVER-${guest.id}-guest`;
-  const icon = await readFile(path.join(process.cwd(), "public", "favicon.png"));
+  const serialNumber = `FEVER-${guest.id}-first-anniversary`;
+  const icon = await readFile(
+    path.join(process.cwd(), "public", "favicon.png"),
+  );
   const background = await readFile(
-    path.join(process.cwd(), "public", "wallet", "fever-pass-background.png"),
+    path.join(
+      process.cwd(),
+      "public",
+      "wallet",
+      "fever-anniversary-background.png",
+    ),
   );
   const logo = await readFile(
     path.join(process.cwd(), "public", "brand", "fever-logo-mark.png"),
@@ -80,10 +92,20 @@ export async function createAppleWalletPass(guest: GuestPass) {
     {
       "background.png": background,
       "background@2x.png": await readFile(
-        path.join(process.cwd(), "public", "wallet", "fever-pass-background@2x.png"),
+        path.join(
+          process.cwd(),
+          "public",
+          "wallet",
+          "fever-anniversary-background@2x.png",
+        ),
       ),
       "background@3x.png": await readFile(
-        path.join(process.cwd(), "public", "wallet", "fever-pass-background@3x.png"),
+        path.join(
+          process.cwd(),
+          "public",
+          "wallet",
+          "fever-anniversary-background@3x.png",
+        ),
       ),
       "icon.png": icon,
       "icon@2x.png": icon,
@@ -93,11 +115,11 @@ export async function createAppleWalletPass(guest: GuestPass) {
     passSigningCertificates(),
     {
       authenticationToken: guest.qr_token,
-      backgroundColor: "rgb(0, 132, 151)",
-      description: "FEVER Guest Card",
-      foregroundColor: "rgb(247, 241, 229)",
+      backgroundColor: "rgb(12, 8, 6)",
+      description: "FEVER First Anniversary",
+      foregroundColor: "rgb(246, 231, 207)",
       formatVersion: 1,
-      labelColor: "rgb(255, 157, 32)",
+      labelColor: "rgb(218, 161, 91)",
       organizationName: "FEVER",
       passTypeIdentifier,
       serialNumber,
@@ -113,14 +135,25 @@ export async function createAppleWalletPass(guest: GuestPass) {
     value: `${guest.first_name} ${guest.last_name}`.toUpperCase(),
   });
   pass.secondaryFields.push(
-    { key: "access", label: "YOUR ACCESS", value: "LIFETIME VIP" },
-    { key: "privilege", label: "YOUR PRIVILEGE", value: "2 SHOTS / VISIT" },
+    { key: "event", label: "FEVER", value: "FIRST ANNIVERSARY" },
+    { key: "date", label: "DATE", value: "17 OCT 2026" },
+  );
+  pass.auxiliaryFields.push(
+    { key: "headliner", label: "HEADLINER", value: "ALAN DIXON" },
+    { key: "support", label: "SUPPORT", value: "GALLARDO + THE ÄCHE" },
   );
   pass.backFields.push(
     {
       key: "note",
       label: "A NOTE FROM FEVER",
-      value: "Some invitations are earned. This one is yours.",
+      value:
+        "Thank you for being part of this journey. Your presence, energy and loyalty made our first year unforgettable.",
+    },
+    {
+      key: "eventDetails",
+      label: "FIRST ANNIVERSARY",
+      value:
+        "Saturday, October 17, 2026 · 10:00 PM\nAlan Dixon\nSupport: Gallardo + The Äche",
     },
     {
       key: "privileges",

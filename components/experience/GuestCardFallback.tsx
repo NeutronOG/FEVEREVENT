@@ -25,12 +25,12 @@ export function GuestCardFallback({
           width={567}
         />
         <div className="card-back-copy">
-          <p>LIFETIME VIP ACCESS</p>
+          <p>FIRST ANNIVERSARY</p>
           <strong>
             {String(invitation.complimentaryShots).padStart(2, "0")}
           </strong>
           <p>COMPLIMENTARY SHOTS</p>
-          <small>EVERY VISIT</small>
+          <small>LIFETIME VIP · EVERY VISIT</small>
         </div>
         <span className="card-member">MEMBER {invitation.memberNumber}</span>
       </div>
@@ -50,7 +50,8 @@ export function GuestCardFallback({
         width={567}
       />
       <div className="card-title">
-        <strong>GUEST</strong>
+        <small>FIRST ANNIVERSARY</small>
+        <strong>MEMBER</strong>
       </div>
       <div className="card-person">
         <span>{invitation.fullName.toLocaleUpperCase("es-MX")}</span>

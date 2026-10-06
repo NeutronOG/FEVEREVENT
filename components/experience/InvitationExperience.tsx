@@ -37,6 +37,9 @@ export function InvitationExperience({
   const visitorCount = useGlobalVisitorCount();
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
     const timer = window.setTimeout(() => setPhase("gate"), 1650);
     return () => window.clearTimeout(timer);
   }, []);
@@ -53,8 +56,21 @@ export function InvitationExperience({
   };
 
   const startExperience = useCallback(() => {
+    const resetScroll = () => {
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({ behavior: "auto", left: 0, top: 0 });
+    };
+
     setPhase("experience");
-    window.setTimeout(() => window.scrollTo({ top: 0 }), 50);
+    window.requestAnimationFrame(() => {
+      resetScroll();
+      window.requestAnimationFrame(resetScroll);
+    });
+    window.setTimeout(resetScroll, 250);
   }, []);
 
   const personalizedInvitation = guestDetails

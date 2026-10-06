@@ -6,10 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const phrases = [
-  "YOUR PRESENCE.",
-  "YOUR LOYALTY.",
-  "YOUR ENERGY.",
-  "YOU HELPED CREATE THE NIGHTS WE REMEMBER.",
+  "THE MUSIC.",
+  "THE PEOPLE.",
+  "THE ENERGY.",
+  "ONE YEAR OF NIGHTS WE WILL NEVER FORGET.",
 ];
 
 export function StorytellingSection() {
@@ -25,16 +25,15 @@ export function StorytellingSection() {
         const text = panel.querySelector(".story-phrase");
         gsap.fromTo(
           text,
-          { opacity: 0.08, y: 50, filter: "blur(12px)" },
+          { opacity: 0.65, y: 20 },
           {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
+            duration: 0.65,
             scrollTrigger: {
               trigger: panel,
-              start: "top 62%",
-              end: "bottom 45%",
-              scrub: 0.8,
+              start: "top 90%",
+              toggleActions: "play none none none",
             },
           },
         );

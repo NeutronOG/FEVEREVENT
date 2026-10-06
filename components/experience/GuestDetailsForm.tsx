@@ -52,8 +52,8 @@ export function GuestDetailsForm({
       <div className="guest-details-art" />
       <form className="guest-details-form" onSubmit={submit}>
         <p>FEVER</p>
-        <h1>Before we begin.</h1>
-        <span>COMPLETE YOUR PRIVATE INVITATION</span>
+        <h1>Before the night begins.</h1>
+        <span>PERSONALIZE YOUR ANNIVERSARY INVITATION</span>
 
         <label>
           <span>FIRST NAME</span>

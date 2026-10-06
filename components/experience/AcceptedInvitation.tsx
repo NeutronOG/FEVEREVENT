@@ -55,13 +55,13 @@ export function AcceptedInvitation({
       <div className="accepted-check">
         <Check size={18} />
       </div>
-      <p>INVITATION ACCEPTED</p>
+      <p>ANNIVERSARY INVITATION ACCEPTED</p>
       <h2>
         YOUR PLACE
         <br />
         IS RESERVED.
       </h2>
-      <span>WELCOME TO FEVER.</span>
+      <span>WELCOME TO OUR FIRST ANNIVERSARY.</span>
 
       <div className="accepted-pass">
         <div ref={cardRef}>
@@ -95,7 +95,7 @@ export function AcceptedInvitation({
       </div>
 
       <div className="event-details" id="event-details">
-        <span>EXCLUSIVE EVENT</span>
+        <span>FEVER · FIRST ANNIVERSARY</span>
         <dl>
           <div>
             <dt>DATE</dt>
@@ -108,6 +108,14 @@ export function AcceptedInvitation({
           <div>
             <dt>VENUE</dt>
             <dd>{invitation.venueName}</dd>
+          </div>
+          <div>
+            <dt>LINEUP</dt>
+            <dd>{invitation.headliner}</dd>
+          </div>
+          <div>
+            <dt>SUPPORT</dt>
+            <dd>{invitation.supportAct}</dd>
           </div>
           <div>
             <dt>LOCATION</dt>

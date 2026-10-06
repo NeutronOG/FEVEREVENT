@@ -4,12 +4,16 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 const statements = [
-  ["SOME INVITATIONS", "ARE GIVEN."],
-  ["OTHERS", "ARE EARNED."],
-  ["THIS ONE", "IS YOURS."],
+  ["ONE YEAR", "OF MUSIC."],
+  ["ONE YEAR", "OF NIGHTS."],
+  ["THIS NIGHT", "IS OURS."],
 ];
 
-export function RecognitionSequence({ onComplete }: { onComplete: () => void }) {
+export function RecognitionSequence({
+  onComplete,
+}: {
+  onComplete: () => void;
+}) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {

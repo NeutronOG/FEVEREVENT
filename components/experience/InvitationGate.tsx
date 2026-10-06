@@ -20,24 +20,24 @@ export function InvitationGate({ invitation, onEnter }: InvitationGateProps) {
     >
       <div aria-hidden="true" className="gate-light" />
       <header className="gate-header">
-        <span>FEVER · EXCLUSIVE EVENT</span>
+        <span>FEVER · FIRST ANNIVERSARY</span>
         <span>PRIVATE INVITATION</span>
       </header>
 
       <div className="gate-recipient">
-        <p>YOUR PRIVATE INVITATION</p>
+        <p>17 OCTOBER · MMXXVI</p>
         <h1>
-          MAKE IT
+          FIRST
           <br />
-          YOURS.
+          ANNIVERSARY.
         </h1>
-        <small>YOUR DETAILS WILL CREATE YOUR INVITATION</small>
+        <small>AN INTIMATE NIGHT CREATED FOR OUR SPECIAL GUESTS</small>
         <span className="recipient-line" />
       </div>
 
       <div className="gate-action">
         <HoldButton onComplete={onEnter} />
-        <p>PRESS &amp; HOLD TO CREATE YOUR INVITATION</p>
+        <p>PRESS &amp; HOLD TO OPEN YOUR INVITATION</p>
       </div>
 
       <footer className="gate-footer">

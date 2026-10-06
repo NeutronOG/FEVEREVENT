@@ -24,7 +24,7 @@ export function InvitationClosing({
         viewport={{ amount: 0.7, once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        Thank you for being part of what makes FEVER extraordinary.
+        Thank you for making our first year unforgettable.
       </motion.p>
       <motion.h2
         initial={{ opacity: 0, filter: "blur(16px)" }}
@@ -32,9 +32,9 @@ export function InvitationClosing({
         viewport={{ amount: 0.6, once: true }}
         whileInView={{ opacity: 1, filter: "blur(0px)" }}
       >
-        WELCOME.
+        CELEBRATE.
       </motion.h2>
-      <span>THE MUSIC IS WAITING FOR YOU.</span>
+      <span>THE FIRST OF MANY NIGHTS TO COME.</span>
 
       <div className="closing-actions">
         {!accepted && (

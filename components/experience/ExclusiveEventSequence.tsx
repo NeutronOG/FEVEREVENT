@@ -3,7 +3,7 @@
 
 import { motion } from "motion/react";
 
-const words = ["THE NIGHTS", "THE MUSIC", "THE PEOPLE"];
+const words = ["ALAN DIXON", "GALLARDO", "+ THE ÄCHE"];
 
 export function ExclusiveEventSequence() {
   return (
@@ -12,7 +12,7 @@ export function ExclusiveEventSequence() {
         <img
           alt="Abstract atmospheric artwork in motion"
           loading="lazy"
-          src="/media/sistek-fever-background.webp"
+          src="/media/fever-anniversary-texture.webp"
         />
         <div aria-hidden="true" className="media-grade" />
         <div className="media-words">
@@ -30,7 +30,7 @@ export function ExclusiveEventSequence() {
         </div>
       </div>
       <div className="exclusive-event-title">
-        <span>ONE NIGHT ONLY</span>
+        <span>17 OCTOBER · ONE NIGHT ONLY</span>
         <motion.img
           alt="FEVER"
           className="exclusive-event-brand"
@@ -42,9 +42,9 @@ export function ExclusiveEventSequence() {
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         />
         <h2>
-          EXCLUSIVE
+          FIRST
           <br />
-          EVENT
+          ANNIVERSARY
         </h2>
       </div>
     </section>

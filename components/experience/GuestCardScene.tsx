@@ -17,7 +17,7 @@ function Card({ invitation }: { invitation: Invitation }) {
   const [flipped, setFlipped] = useState(false);
   const [dragging, setDragging] = useState(false);
   const pointer = useRef({ x: 0, y: 0 });
-  const artwork = useTexture("/media/sistek-fever-background.webp");
+  const artwork = useTexture("/media/fever-anniversary-texture.webp");
 
   useFrame((state, delta) => {
     if (!group.current) return;
@@ -68,7 +68,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           <meshPhysicalMaterial
             clearcoat={0.78}
             clearcoatRoughness={0.22}
-            color="#e8ffff"
+            color="#2b170d"
             map={artwork}
             metalness={0.52}
             roughness={0.34}
@@ -88,12 +88,12 @@ function Card({ invitation }: { invitation: Invitation }) {
           </Text>
           <Text
             anchorX="left"
-            color="#ff9d20"
+            color="#d89a54"
             fontSize={0.18}
             letterSpacing={0.08}
             position={[-1.42, 0.2, 0]}
           >
-            GUEST
+            FIRST ANNIVERSARY
           </Text>
           <Text
             anchorX="left"
@@ -106,7 +106,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           </Text>
           <Text
             anchorX="left"
-            color="#c8e5e6"
+            color="#cfb99c"
             fontSize={0.095}
             letterSpacing={0.08}
             position={[-1.42, -0.82, 0]}
@@ -115,7 +115,7 @@ function Card({ invitation }: { invitation: Invitation }) {
           </Text>
           <Text
             anchorX="right"
-            color="#ff9d20"
+            color="#d89a54"
             fontSize={0.48}
             position={[1.37, -0.72, 0]}
           >
@@ -135,7 +135,7 @@ function Card({ invitation }: { invitation: Invitation }) {
             FEVER
           </Text>
           <Text
-            color="#ff9d20"
+            color="#d89a54"
             fontSize={0.17}
             letterSpacing={0.06}
             position={[0, 0.32, 0]}
@@ -146,7 +146,7 @@ function Card({ invitation }: { invitation: Invitation }) {
             {String(invitation.complimentaryShots).padStart(2, "0")}
           </Text>
           <Text
-            color="#c8e5e6"
+            color="#cfb99c"
             fontSize={0.12}
             letterSpacing={0.06}
             position={[0, -0.46, 0]}
@@ -154,7 +154,7 @@ function Card({ invitation }: { invitation: Invitation }) {
             COMPLIMENTARY SHOTS
           </Text>
           <Text
-            color="#ff9d20"
+            color="#d89a54"
             fontSize={0.1}
             letterSpacing={0.12}
             position={[0, -0.72, 0]}

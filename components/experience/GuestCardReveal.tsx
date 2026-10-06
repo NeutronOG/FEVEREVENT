@@ -4,15 +4,11 @@ import { motion } from "motion/react";
 import { GuestCardFallback } from "./GuestCardFallback";
 import type { Invitation } from "@/data/invitations";
 
-export function GuestCardReveal({
-  invitation,
-}: {
-  invitation: Invitation;
-}) {
+export function GuestCardReveal({ invitation }: { invitation: Invitation }) {
   return (
     <section className="card-reveal-section">
       <div className="section-eyebrow">
-        <span>PERMANENT STATUS</span>
+        <span>ANNIVERSARY EDITION</span>
         <span>ISSUED {new Date().getFullYear()}</span>
       </div>
       <motion.div
@@ -27,13 +23,13 @@ export function GuestCardReveal({
         </div>
       </motion.div>
       <div className="card-reveal-copy">
-        <h2>GUEST</h2>
+        <h2>MEMBER.</h2>
         <p>
-          A permanent recognition, reserved for the people who changed the
-          atmosphere simply by being there.
+          A permanent recognition for the people who made our first year
+          unforgettable.
         </p>
       </div>
-      <p className="card-instruction">YOUR PERSONAL CARD</p>
+      <p className="card-instruction">YOUR PERSONAL FEVER PASS</p>
     </section>
   );
 }

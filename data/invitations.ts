@@ -10,6 +10,9 @@ export type Invitation = {
   status: "pending" | "accepted";
   vipAccess: "lifetime";
   complimentaryShots: number;
+  eventTitle: string;
+  headliner: string;
+  supportAct: string;
 };
 
 export const invitations: Record<string, Invitation> = {
@@ -18,13 +21,16 @@ export const invitations: Record<string, Invitation> = {
     firstName: "Agustín",
     fullName: "Agustín Pinaya",
     memberNumber: "0017",
-    eventDate: "Saturday, August 22, 2026",
-    eventTime: "10:30 PM",
+    eventDate: "Saturday, October 17, 2026",
+    eventTime: "10:00 PM",
     venueName: "FEVER",
     venueAddress: "Private location · Details reserved for invited guests",
     status: "pending",
     vipAccess: "lifetime",
     complimentaryShots: 2,
+    eventTitle: "First Anniversary",
+    headliner: "Alan Dixon",
+    supportAct: "Gallardo + The Äche",
   },
 };
 
