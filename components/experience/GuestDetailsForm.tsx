@@ -36,7 +36,7 @@ export function GuestDetailsForm({
       setError(
         submissionError instanceof Error
           ? submissionError.message
-          : "We could not save your invitation. Please try again.",
+          : "We could not activate your membership. Please try again.",
       );
       setIsSaving(false);
     }
@@ -52,8 +52,8 @@ export function GuestDetailsForm({
       <div className="guest-details-art" />
       <form className="guest-details-form" onSubmit={submit}>
         <p>FEVER</p>
-        <h1>Before the night begins.</h1>
-        <span>PERSONALIZE YOUR ANNIVERSARY INVITATION</span>
+        <h1>This one has your name on it.</h1>
+        <span>ACTIVATE YOUR FEVER MEMBERSHIP</span>
 
         <label>
           <span>FIRST NAME</span>
@@ -122,11 +122,11 @@ export function GuestDetailsForm({
         </label>
 
         <button disabled={isSaving} type="submit">
-          {isSaving ? "SECURING YOUR INVITATION..." : "CONTINUE"}
+          {isSaving ? "ACTIVATING YOUR MEMBERSHIP..." : "CONTINUE"}
         </button>
         {error ? <small role="alert">{error}</small> : null}
         <small>
-          YOUR DETAILS SECURE THIS INVITATION AND PERSONALIZE YOUR WALLET PASS.
+          YOUR DETAILS PERSONALIZE AND SECURE YOUR PRIVATE MEMBER PASS.
         </small>
       </form>
     </motion.section>

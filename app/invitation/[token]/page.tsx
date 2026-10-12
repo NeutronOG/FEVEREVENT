@@ -7,9 +7,9 @@ type InvitationPageProps = {
 };
 
 export const metadata: Metadata = {
-  title: "FEVER — Private Invitation",
+  title: "FEVER Membership — Private Recognition",
   description:
-    "A private invitation for the guests who make every night worth remembering.",
+    "A private recognition for the guests who make every night worth remembering.",
   robots: {
     index: false,
     follow: false,
@@ -33,9 +33,9 @@ export default async function InvitationPage({ params }: InvitationPageProps) {
         <div aria-hidden="true" className="invalid-light" />
         <span className="brand-mark">FEVER</span>
         <div>
-          <p>PRIVATE INVITATION</p>
-          <h1>This invitation could not be verified.</h1>
-          <span>CHECK THE PRIVATE LINK PROVIDED BY YOUR HOST.</span>
+          <p>PRIVATE MEMBERSHIP</p>
+          <h1>This membership could not be verified.</h1>
+          <span>CHECK THE PRIVATE LINK PROVIDED BY FEVER.</span>
         </div>
       </main>
     );

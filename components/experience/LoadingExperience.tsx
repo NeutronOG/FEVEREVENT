@@ -13,7 +13,7 @@ export function LoadingExperience() {
     >
       <div>
         <span className="brand-mark">FEVER</span>
-        <p>FIRST ANNIVERSARY · PRIVATE INVITATION</p>
+        <p>MEMBERSHIP · PRIVATE RECOGNITION</p>
       </div>
       <div className="loading-line">
         <motion.span

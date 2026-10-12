@@ -31,7 +31,7 @@ export async function registerGuest(
     const payload = (await response
       .json()
       .catch(() => ({}))) as RegistrationFailure;
-    throw new Error(payload.error ?? "We could not save your invitation.");
+    throw new Error(payload.error ?? "We could not activate your membership.");
   }
 
   return (await response.json()) as RegisteredGuest;

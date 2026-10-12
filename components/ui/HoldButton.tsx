@@ -53,7 +53,7 @@ export function HoldButton({ onComplete }: { onComplete: () => void }) {
 
   return (
     <button
-      aria-label="Hold for 1 second to enter the invitation"
+      aria-label="Hold for 1 second to enter FEVER Membership"
       className="hold-button"
       onKeyDown={(event) => {
         if (event.key === " " || event.key === "Enter") {
@@ -82,7 +82,7 @@ export function HoldButton({ onComplete }: { onComplete: () => void }) {
           strokeDashoffset={RING_CIRCUMFERENCE * (1 - progress)}
         />
       </svg>
-      <span>BEGIN</span>
+      <span>ENTER</span>
       <small>HOLD 1 SECOND</small>
     </button>
   );

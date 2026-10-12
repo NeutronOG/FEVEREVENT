@@ -21,11 +21,13 @@ export async function GET(_: Request, { params }: RouteContext) {
       .maybeSingle();
 
     if (error) throw error;
-    if (!guest) return Response.json({ error: "Invitation not found." }, { status: 404 });
+    if (!guest) {
+      return Response.json({ error: "Membership not found." }, { status: 404 });
+    }
 
     const invitation = getInvitation(guest.invitation_token);
     if (!invitation) {
-      return Response.json({ error: "Invitation not found." }, { status: 404 });
+      return Response.json({ error: "Membership not found." }, { status: 404 });
     }
 
     const walletPass = await createAppleWalletPass({
@@ -48,7 +50,7 @@ export async function GET(_: Request, { params }: RouteContext) {
     return new Response(body, {
       headers: {
         "cache-control": "no-store",
-        "content-disposition": `attachment; filename="FEVER-${guest.id}.pkpass"`,
+        "content-disposition": `attachment; filename="FEVER-Membership-${guest.id}.pkpass"`,
         "content-type": "application/vnd.apple.pkpass",
       },
     });

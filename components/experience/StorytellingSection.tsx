@@ -6,10 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const phrases = [
-  "THE MUSIC.",
-  "THE PEOPLE.",
-  "THE ENERGY.",
-  "ONE YEAR OF NIGHTS WE WILL NEVER FORGET.",
+  "YOU CAME BACK.",
+  "YOU BROUGHT THE ENERGY.",
+  "YOU BECAME PART OF THE STORY.",
+  "SO WE MADE YOUR PLACE OFFICIAL.",
 ];
 
 export function StorytellingSection() {

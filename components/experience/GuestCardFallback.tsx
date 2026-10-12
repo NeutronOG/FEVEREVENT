@@ -25,7 +25,7 @@ export function GuestCardFallback({
           width={567}
         />
         <div className="card-back-copy">
-          <p>FIRST ANNIVERSARY</p>
+          <p>FEVER MEMBERSHIP</p>
           <strong>
             {String(invitation.complimentaryShots).padStart(2, "0")}
           </strong>
@@ -50,7 +50,7 @@ export function GuestCardFallback({
         width={567}
       />
       <div className="card-title">
-        <small>FIRST ANNIVERSARY</small>
+        <small>FEVER MEMBERSHIP</small>
         <strong>MEMBER</strong>
       </div>
       <div className="card-person">

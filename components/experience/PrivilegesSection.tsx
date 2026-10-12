@@ -19,13 +19,14 @@ export function PrivilegesSection() {
             MEMBERSHIP BENEFITS
           </p>
           <h2 id="privileges-heading">
-            Your card.
+            More than access.
             <br />
-            <em>Your privileges.</em>
+            <em>A place that is yours.</em>
           </h2>
         </div>
         <p className="privileges-intro">
-          A permanent thank you, made for every night you spend with us.
+          Consider this our way of returning the loyalty you have always shown
+          us.
         </p>
       </div>
 
@@ -45,8 +46,10 @@ export function PrivilegesSection() {
             <strong>∞</strong>
           </div>
           <div className="privilege-copy">
-            <h3>Always on the list.</h3>
-            <p>Lifetime VIP Access to FEVER.</p>
+            <h3>Your name stays on the list.</h3>
+            <p>
+              Lifetime VIP access, because you have already earned your place.
+            </p>
           </div>
           <div className="privilege-card-bottom">
             <ShieldCheck aria-hidden="true" size={15} />
@@ -76,8 +79,8 @@ export function PrivilegesSection() {
             </div>
           </div>
           <div className="privilege-copy">
-            <h3>A toast to you.</h3>
-            <p>Two Free Shots every time you visit.</p>
+            <h3>The first round is ours.</h3>
+            <p>Two complimentary shots, every time you visit.</p>
           </div>
           <div className="privilege-card-bottom">
             <Sparkles aria-hidden="true" size={15} />

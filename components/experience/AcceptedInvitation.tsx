@@ -55,13 +55,13 @@ export function AcceptedInvitation({
       <div className="accepted-check">
         <Check size={18} />
       </div>
-      <p>ANNIVERSARY INVITATION ACCEPTED</p>
+      <p>FEVER MEMBERSHIP ACTIVATED</p>
       <h2>
-        YOUR PLACE
+        YOU&apos;RE OFFICIALLY
         <br />
-        IS RESERVED.
+        ONE OF US.
       </h2>
-      <span>WELCOME TO OUR FIRST ANNIVERSARY.</span>
+      <span>FROM NOW ON, FEVER KNOWS YOUR NAME.</span>
 
       <div className="accepted-pass">
         <div ref={cardRef}>
@@ -70,7 +70,7 @@ export function AcceptedInvitation({
         <div className="qr-frame">
           {qr ? (
             <Image
-              alt={`Invitation QR code for ${invitation.fullName}`}
+              alt={`Membership QR code for ${invitation.fullName}`}
               height={132}
               unoptimized
               width={132}
@@ -95,7 +95,7 @@ export function AcceptedInvitation({
       </div>
 
       <div className="event-details" id="event-details">
-        <span>FEVER · FIRST ANNIVERSARY</span>
+        <span>FEVER · MEMBERS&apos; NIGHT</span>
         <dl>
           <div>
             <dt>DATE</dt>

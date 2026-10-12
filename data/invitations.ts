@@ -28,7 +28,7 @@ export const invitations: Record<string, Invitation> = {
     status: "pending",
     vipAccess: "lifetime",
     complimentaryShots: 2,
-    eventTitle: "First Anniversary",
+    eventTitle: "FEVER Members' Night",
     headliner: "Alan Dixon",
     supportAct: "Gallardo + The Äche",
   },

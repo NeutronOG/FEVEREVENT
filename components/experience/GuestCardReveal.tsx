@@ -8,7 +8,7 @@ export function GuestCardReveal({ invitation }: { invitation: Invitation }) {
   return (
     <section className="card-reveal-section">
       <div className="section-eyebrow">
-        <span>ANNIVERSARY EDITION</span>
+        <span>MEMBERSHIP EDITION</span>
         <span>ISSUED {new Date().getFullYear()}</span>
       </div>
       <motion.div
@@ -25,11 +25,11 @@ export function GuestCardReveal({ invitation }: { invitation: Invitation }) {
       <div className="card-reveal-copy">
         <h2>MEMBER.</h2>
         <p>
-          A permanent recognition for the people who made our first year
-          unforgettable.
+          Not everyone receives one. You did — because your place at FEVER has
+          already been earned.
         </p>
       </div>
-      <p className="card-instruction">YOUR PERSONAL FEVER PASS</p>
+      <p className="card-instruction">YOUR PERSONAL FEVER MEMBERSHIP</p>
     </section>
   );
 }

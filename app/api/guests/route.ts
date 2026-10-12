@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
     if (!getInvitation(invitationToken)) {
       return Response.json(
-        { error: "This invitation could not be verified." },
+        { error: "This membership could not be verified." },
         { status: 404 },
       );
     }
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Guest registration failed", error);
     return Response.json(
-      { error: "We could not save your invitation. Please try again." },
+      { error: "We could not activate your membership. Please try again." },
       { status: 503 },
     );
   }

@@ -22,13 +22,13 @@ export default async function VerificationPage({
   return (
     <main className="verification-page">
       <section className="verification-card">
-        <span>FEVER · PRIVATE MEMBER</span>
+        <span>FEVER · MEMBERSHIP</span>
         <p>CARD VERIFIED</p>
         <h1>
           {guest.first_name} {guest.last_name}
         </h1>
         <strong>MEMBER {String(guest.member_number).padStart(4, "0")}</strong>
-        <small>LIFETIME VIP ACCESS · 2 SHOTS EVERY VISIT</small>
+        <small>MEMBER FOR LIFE · 2 SHOTS EVERY VISIT</small>
       </section>
     </main>
   );

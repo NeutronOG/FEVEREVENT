@@ -73,7 +73,7 @@ export async function createAppleWalletPass(guest: GuestPass) {
   const passTypeIdentifier = required("APPLE_PASS_TYPE_IDENTIFIER");
   // A new serial makes Wallet install the corrected pass instead of reusing
   // an earlier version.
-  const serialNumber = `FEVER-${guest.id}-first-anniversary`;
+  const serialNumber = `FEVER-${guest.id}-membership`;
   const icon = await readFile(
     path.join(process.cwd(), "public", "favicon.png"),
   );
@@ -116,7 +116,7 @@ export async function createAppleWalletPass(guest: GuestPass) {
     {
       authenticationToken: guest.qr_token,
       backgroundColor: "rgb(12, 8, 6)",
-      description: "FEVER First Anniversary",
+      description: "FEVER Membership",
       foregroundColor: "rgb(246, 231, 207)",
       formatVersion: 1,
       labelColor: "rgb(218, 161, 91)",
@@ -135,7 +135,7 @@ export async function createAppleWalletPass(guest: GuestPass) {
     value: `${guest.first_name} ${guest.last_name}`.toUpperCase(),
   });
   pass.secondaryFields.push(
-    { key: "event", label: "FEVER", value: "FIRST ANNIVERSARY" },
+    { key: "event", label: "FEVER", value: "MEMBERSHIP" },
     { key: "date", label: "DATE", value: "17 OCT 2026" },
   );
   pass.auxiliaryFields.push(
@@ -147,11 +147,11 @@ export async function createAppleWalletPass(guest: GuestPass) {
       key: "note",
       label: "A NOTE FROM FEVER",
       value:
-        "Thank you for being part of this journey. Your presence, energy and loyalty made our first year unforgettable.",
+        "You were never just another guest. Your loyalty, presence and energy earned you a permanent place at FEVER.",
     },
     {
       key: "eventDetails",
-      label: "FIRST ANNIVERSARY",
+      label: "MEMBERS' NIGHT",
       value:
         "Saturday, October 17, 2026 · 10:00 PM\nAlan Dixon\nSupport: Gallardo + The Äche",
     },

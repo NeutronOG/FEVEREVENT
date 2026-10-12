@@ -119,7 +119,7 @@ export function InvitationExperience({
           transition={{ duration: 1.2 }}
         >
           <header className="experience-header">
-            <a aria-label="FEVER invitation top" href="#top">
+            <a aria-label="FEVER Membership top" href="#top">
               <Image
                 alt="FEVER"
                 className="experience-logo"
@@ -157,7 +157,7 @@ export function InvitationExperience({
           </AnimatePresence>
           <footer className="site-footer">
             <span>FEVER</span>
-            <p>PRIVATE INVITATION · NOT FOR PUBLIC DISTRIBUTION</p>
+            <p>PRIVATE MEMBERSHIP · ISSUED BY FEVER</p>
             <span>MMXXVI</span>
           </footer>
         </motion.div>

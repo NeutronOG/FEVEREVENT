@@ -30,7 +30,7 @@ export function ExclusiveEventSequence() {
         </div>
       </div>
       <div className="exclusive-event-title">
-        <span>17 OCTOBER · ONE NIGHT ONLY</span>
+        <span>17 OCTOBER · MEMBERS&apos; NIGHT</span>
         <motion.img
           alt="FEVER"
           className="exclusive-event-brand"
@@ -42,9 +42,9 @@ export function ExclusiveEventSequence() {
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         />
         <h2>
-          FIRST
+          MEMBERS
           <br />
-          ANNIVERSARY
+          ONLY
         </h2>
       </div>
     </section>

@@ -24,7 +24,8 @@ export function InvitationClosing({
         viewport={{ amount: 0.7, once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        Thank you for making our first year unforgettable.
+        You never asked to be noticed. You simply gave us reasons to remember
+        you.
       </motion.p>
       <motion.h2
         initial={{ opacity: 0, filter: "blur(16px)" }}
@@ -32,14 +33,14 @@ export function InvitationClosing({
         viewport={{ amount: 0.6, once: true }}
         whileInView={{ opacity: 1, filter: "blur(0px)" }}
       >
-        CELEBRATE.
+        YOU BELONG.
       </motion.h2>
-      <span>THE FIRST OF MANY NIGHTS TO COME.</span>
+      <span>THIS ISN&apos;T A PROMOTION. IT&apos;S RECOGNITION.</span>
 
       <div className="closing-actions">
         {!accepted && (
           <MagneticButton onClick={onAccept} variant="primary">
-            ACCEPT INVITATION
+            ACTIVATE MEMBERSHIP
           </MagneticButton>
         )}
         <MagneticButton
@@ -49,7 +50,7 @@ export function InvitationClosing({
               ?.scrollIntoView({ behavior: "smooth" })
           }
         >
-          SAVE YOUR CARD
+          SAVE MEMBER CARD
         </MagneticButton>
       </div>
 
@@ -57,7 +58,7 @@ export function InvitationClosing({
         <div className="preaccept-details" id="closing-details">
           <span>{invitation.eventDate}</span>
           <span>{invitation.eventTime}</span>
-          <span>PRIVATE LOCATION · RELEASED UPON ACCEPTANCE</span>
+          <span>MEMBERS&apos; NIGHT · LOCATION RELEASED UPON ACTIVATION</span>
         </div>
       )}
     </section>

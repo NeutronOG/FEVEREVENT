@@ -3,10 +3,10 @@
 import { motion } from "motion/react";
 
 const paragraphs = [
-  "To our special guest.",
-  "Thank you for being part of this journey. Your presence, energy and loyalty made our first year unforgettable.",
-  "We are beyond grateful to celebrate this first anniversary with you — a year defined by delight, uniqueness and distinction.",
-  "On October 17, let the music take over for one night created for the people who made every moment count.",
+  "To someone we remember.",
+  "You have never been just another name on the list. You showed up, came back and brought the kind of energy that changes a room.",
+  "FEVER Membership is our way of recognizing that. Not as a promotion, but as a thank you reserved for the people who have become part of our story.",
+  "Your place is no longer something you need to ask for. It is yours — every visit, every night, from here on out.",
 ];
 
 export function InvitationLetter() {
@@ -14,7 +14,7 @@ export function InvitationLetter() {
     <section className="invitation-letter">
       <div className="letter-heading">
         <span>FEVER · PRIVATE CORRESPONDENCE</span>
-        <h2>ONE YEAR.</h2>
+        <h2>WE NOTICED.</h2>
       </div>
       <div className="letter-body">
         {paragraphs.map((paragraph, index) => (

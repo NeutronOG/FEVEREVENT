@@ -93,7 +93,7 @@ function Card({ invitation }: { invitation: Invitation }) {
             letterSpacing={0.08}
             position={[-1.42, 0.2, 0]}
           >
-            FIRST ANNIVERSARY
+            FEVER MEMBERSHIP
           </Text>
           <Text
             anchorX="left"
@@ -140,7 +140,7 @@ function Card({ invitation }: { invitation: Invitation }) {
             letterSpacing={0.06}
             position={[0, 0.32, 0]}
           >
-            LIFETIME VIP ACCESS
+            MEMBER FOR LIFE
           </Text>
           <Text color="#f7f1e5" fontSize={0.5} position={[0, -0.05, 0]}>
             {String(invitation.complimentaryShots).padStart(2, "0")}

@@ -23,32 +23,33 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.feverevent.store",
   ),
-  title: "FEVER — First Anniversary",
-  description: "A private invitation to celebrate FEVER's first anniversary.",
-  applicationName: "FEVER First Anniversary",
+  title: "FEVER Membership — Your Place Is Yours",
+  description:
+    "A private recognition for the guests whose loyalty, presence and energy have made them part of FEVER.",
+  applicationName: "FEVER Membership",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
   },
   openGraph: {
-    title: "FEVER — First Anniversary",
+    title: "FEVER Membership — Your Place Is Yours",
     description:
-      "One year of music, energy and unforgettable nights. A private invitation from FEVER.",
+      "You were never just another guest. Welcome to FEVER Membership.",
     type: "website",
     images: [
       {
         url: "/og.png",
         width: 1731,
         height: 909,
-        alt: "FEVER first anniversary invitation",
+        alt: "FEVER Membership private recognition",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FEVER — First Anniversary",
+    title: "FEVER Membership — Your Place Is Yours",
     description:
-      "One year of music, energy and unforgettable nights. A private invitation from FEVER.",
+      "You were never just another guest. Welcome to FEVER Membership.",
     images: ["/og.png"],
   },
 };

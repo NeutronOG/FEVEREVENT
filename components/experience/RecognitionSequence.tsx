@@ -7,24 +7,24 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const stages = [
   {
-    id: "sound",
-    label: "THE SOUND",
-    lines: ["FEEL THE", "FREQUENCY."],
-    detail: "Let the music pull you in.",
+    id: "impact",
+    label: "THE IMPACT",
+    lines: ["YOU MADE", "YOUR MARK."],
+    detail: "Every visit helped shape what FEVER is today.",
     duration: 2400,
   },
   {
-    id: "connection",
-    label: "THE CONNECTION",
-    lines: ["FIND YOUR", "PEOPLE."],
-    detail: "A connection beyond the dance floor.",
+    id: "recognition",
+    label: "THE RECOGNITION",
+    lines: ["WE SEE", "YOU."],
+    detail: "Because loyalty like yours deserves more than a thank you.",
     duration: 2400,
   },
   {
-    id: "welcome",
-    label: "YOUR MOMENT",
-    lines: ["WELCOME TO", "FEVER."],
-    detail: "Your invitation. Your moment.",
+    id: "membership",
+    label: "YOUR MEMBERSHIP",
+    lines: ["THIS IS", "YOURS."],
+    detail: "Welcome to the inner circle.",
     duration: 3000,
   },
 ];
@@ -81,7 +81,7 @@ export function RecognitionSequence({
   return (
     <motion.section
       animate={{ opacity: 1 }}
-      aria-label="Welcome to FEVER"
+      aria-label="Welcome to FEVER Membership"
       className="recognition-auto"
       exit={{ opacity: 0 }}
       initial={{ opacity: reduced ? 1 : 0 }}
@@ -109,7 +109,7 @@ export function RecognitionSequence({
 
       <header className="recognition-header">
         <span className="brand-mark">FEVER</span>
-        <span>FIRST ANNIVERSARY</span>
+        <span>MEMBERSHIP</span>
       </header>
 
       <div aria-atomic="true" aria-live="polite" className="recognition-stage">
