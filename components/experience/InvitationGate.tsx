@@ -25,7 +25,7 @@ export function InvitationGate({ invitation, onEnter }: InvitationGateProps) {
       </header>
 
       <div className="gate-recipient">
-        <p>SELECTED FOR YOU · MMXXVI</p>
+        <p>GRAND OPENING · 06 &amp; 07 NOVEMBER</p>
         <h1>
           FEVER
           <br />

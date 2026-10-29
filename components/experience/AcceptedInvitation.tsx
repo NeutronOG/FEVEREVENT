@@ -95,10 +95,10 @@ export function AcceptedInvitation({
       </div>
 
       <div className="event-details" id="event-details">
-        <span>FEVER · MEMBERS&apos; NIGHT</span>
+        <span>FEVER · GRAND OPENING</span>
         <dl>
           <div>
-            <dt>DATE</dt>
+            <dt>NIGHTS</dt>
             <dd>{invitation.eventDate}</dd>
           </div>
           <div>
@@ -110,12 +110,16 @@ export function AcceptedInvitation({
             <dd>{invitation.venueName}</dd>
           </div>
           <div>
-            <dt>LINEUP</dt>
+            <dt>HEADLINER</dt>
             <dd>{invitation.headliner}</dd>
           </div>
           <div>
-            <dt>SUPPORT</dt>
-            <dd>{invitation.supportAct}</dd>
+            <dt>LINE UP</dt>
+            <dd>{invitation.supportActs.join(" · ")}</dd>
+          </div>
+          <div>
+            <dt>PRESENTED WITH</dt>
+            <dd>{invitation.presentedWith}</dd>
           </div>
           <div>
             <dt>LOCATION</dt>

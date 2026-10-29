@@ -1450,26 +1450,56 @@ a:focus-visible {
 }
 
 .media-words {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  gap: clamp(0.9rem, 2.4vw, 1.4rem);
   height: 100%;
-  justify-content: space-around;
+  justify-content: center;
   padding: 3rem var(--page-pad);
   position: relative;
+  text-align: center;
   z-index: 2;
 }
 
-.media-words h3 {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(3.6rem, 17vw, 9rem);
-  font-weight: 400;
-  line-height: 0.78;
-  margin: 0;
-  mix-blend-mode: screen;
+.lineup-label {
+  color: var(--warm-white);
+  font-size: clamp(0.62rem, 1.4vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
 }
 
-.media-words h3:nth-child(2) {
-  align-self: flex-end;
+.lineup-headliner {
+  font-family: var(--font-sans), "Helvetica Neue", sans-serif;
+  font-size: clamp(2.7rem, 11vw, 7.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.88;
+  margin: 0;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.65);
+  text-transform: uppercase;
+}
+
+.lineup-support {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: clamp(0.95rem, 3.6vw, 1.75rem);
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 0.06em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  row-gap: 0.4rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+}
+
+.lineup-support li + li::before {
+  color: var(--amber);
+  content: "|";
+  font-weight: 400;
+  margin: 0 0.75em;
 }
 
 .exclusive-event-title {
@@ -1482,10 +1512,13 @@ a:focus-visible {
 }
 
 .exclusive-event-title > span {
-  color: var(--muted-white);
-  font-size: 0.48rem;
+  color: var(--warm-white);
+  font-size: clamp(0.62rem, 1.6vw, 0.8rem);
+  font-style: italic;
+  font-weight: 700;
   grid-column: 1 / -1;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
   margin-bottom: 3rem;
 }
 
@@ -1501,11 +1534,23 @@ a:focus-visible {
 
 .exclusive-event-title h2 {
   align-self: end;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-sans), "Helvetica Neue", sans-serif;
   font-size: clamp(2rem, 5.8vw, 3.8rem);
-  font-weight: 400;
-  line-height: 0.82;
-  margin: 0 0 0.2rem -0.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  margin: 0 0 0.2rem -0.1rem;
+}
+
+.exclusive-event-title .exclusive-event-partner {
+  border-top: 1px solid var(--hairline);
+  color: var(--muted-white);
+  font-size: 0.56rem;
+  grid-column: 1 / -1;
+  letter-spacing: 0.28em;
+  margin: 2.25rem 0 0;
+  padding-top: 1.1rem;
+  text-align: center;
 }
 
 .invitation-closing {
@@ -2114,27 +2159,27 @@ a:focus-visible {
   }
 }
 
-/* First anniversary visual system */
+/* Grand opening visual system: amber light through a geometric ceiling */
 :root {
-  --black: #0b0705;
-  --charcoal: #18100b;
-  --warm-white: #f5e6ce;
-  --muted-white: #c7ad8c;
-  --amber: #e2a45b;
-  --dark-gold: #a95e28;
-  --hairline: rgba(245, 230, 206, 0.22);
+  --black: #070504;
+  --charcoal: #140d07;
+  --warm-white: #f4ead8;
+  --muted-white: #c4a982;
+  --amber: #eea548;
+  --dark-gold: #b4661f;
+  --hairline: rgba(244, 234, 216, 0.22);
 }
 
 body {
   background:
     linear-gradient(180deg, rgba(9, 6, 4, 0.4), rgba(9, 6, 4, 0.88)),
-    url("/media/fever-anniversary-texture.webp") center top / cover fixed;
+    url("/media/fever-grand-opening-texture.webp") center top / cover fixed;
 }
 
 .fever-experience {
   background:
     linear-gradient(180deg, rgba(9, 6, 4, 0.25), rgba(9, 6, 4, 0.76)),
-    url("/media/fever-anniversary-texture.webp") center top / cover fixed;
+    url("/media/fever-grand-opening-texture.webp") center top / cover fixed;
 }
 
 .invitation-gate,
@@ -2146,7 +2191,7 @@ body {
 .invalid-invitation {
   background:
     linear-gradient(145deg, rgba(8, 5, 3, 0.7), rgba(13, 8, 5, 0.9)),
-    url("/media/fever-anniversary-texture.webp") center / cover fixed;
+    url("/media/fever-grand-opening-texture.webp") center / cover fixed;
 }
 
 .guest-details-art,
@@ -2215,7 +2260,7 @@ body {
 .vip-card {
   background:
     linear-gradient(135deg, rgba(15, 8, 4, 0.22), rgba(28, 14, 7, 0.7)),
-    url("/media/fever-anniversary-texture.webp") center / cover;
+    url("/media/fever-grand-opening-texture.webp") center / cover;
   border-color: rgba(245, 230, 206, 0.32);
   box-shadow:
     0 38px 80px rgba(5, 3, 2, 0.64),
@@ -2252,7 +2297,8 @@ body {
 }
 
 .media-frame img {
-  filter: saturate(0.78) contrast(1.12) brightness(0.64);
+  filter: saturate(1.05) contrast(1.08) brightness(0.78);
+  object-position: center 82%;
 }
 
 .media-grade {
@@ -2291,7 +2337,7 @@ body {
   .fever-experience {
     background:
       linear-gradient(180deg, rgba(9, 6, 4, 0.5), rgba(9, 6, 4, 0.9)),
-      url("/media/fever-anniversary-texture.webp") center top / 100% auto
+      url("/media/fever-grand-opening-texture.webp") center top / 100% auto
         repeat-y;
   }
 
@@ -2300,7 +2346,7 @@ body {
   .recognition-auto {
     background:
       linear-gradient(145deg, rgba(8, 5, 3, 0.7), rgba(13, 8, 5, 0.9)),
-      url("/media/fever-anniversary-texture.webp") center top / 100% auto;
+      url("/media/fever-grand-opening-texture.webp") center top / 100% auto;
   }
 
   .gate-recipient h1 {

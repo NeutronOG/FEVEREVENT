@@ -23,18 +23,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.feverevent.store",
   ),
-  title: "FEVER Membership — Your Place Is Yours",
+  title: "FEVER Grand Opening — Your Place Is Yours",
   description:
-    "A private recognition for the guests whose loyalty, presence and energy have made them part of FEVER.",
+    "FEVER Grand Opening · November 6 & 7. A private invitation for the guests whose loyalty, presence and energy have made them part of FEVER.",
   applicationName: "FEVER Membership",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
   },
   openGraph: {
-    title: "FEVER Membership — Your Place Is Yours",
+    title: "FEVER Grand Opening — Your Place Is Yours",
     description:
-      "You were never just another guest. Welcome to FEVER Membership.",
+      "Grand Opening · November 6 & 7 · Fraser Jones, Gallardo, The Áche, Canales.",
     type: "website",
     images: [
       {
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FEVER Membership — Your Place Is Yours",
+    title: "FEVER Grand Opening — Your Place Is Yours",
     description:
-      "You were never just another guest. Welcome to FEVER Membership.",
+      "Grand Opening · November 6 & 7 · Fraser Jones, Gallardo, The Áche, Canales.",
     images: ["/og.png"],
   },
 };

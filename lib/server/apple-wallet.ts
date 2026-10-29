@@ -73,7 +73,7 @@ export async function createAppleWalletPass(guest: GuestPass) {
   const passTypeIdentifier = required("APPLE_PASS_TYPE_IDENTIFIER");
   // A new serial makes Wallet install the corrected pass instead of reusing
   // an earlier version.
-  const serialNumber = `FEVER-${guest.id}-membership`;
+  const serialNumber = `FEVER-${guest.id}-grand-opening`;
   const icon = await readFile(
     path.join(process.cwd(), "public", "favicon.png"),
   );
@@ -82,7 +82,7 @@ export async function createAppleWalletPass(guest: GuestPass) {
       process.cwd(),
       "public",
       "wallet",
-      "fever-anniversary-background.png",
+      "fever-grand-opening-background.png",
     ),
   );
   const logo = await readFile(
@@ -96,7 +96,7 @@ export async function createAppleWalletPass(guest: GuestPass) {
           process.cwd(),
           "public",
           "wallet",
-          "fever-anniversary-background@2x.png",
+          "fever-grand-opening-background@2x.png",
         ),
       ),
       "background@3x.png": await readFile(
@@ -104,7 +104,7 @@ export async function createAppleWalletPass(guest: GuestPass) {
           process.cwd(),
           "public",
           "wallet",
-          "fever-anniversary-background@3x.png",
+          "fever-grand-opening-background@3x.png",
         ),
       ),
       "icon.png": icon,
@@ -135,12 +135,12 @@ export async function createAppleWalletPass(guest: GuestPass) {
     value: `${guest.first_name} ${guest.last_name}`.toUpperCase(),
   });
   pass.secondaryFields.push(
-    { key: "event", label: "FEVER", value: "MEMBERSHIP" },
-    { key: "date", label: "DATE", value: "17 OCT 2026" },
+    { key: "event", label: "FEVER", value: "GRAND OPENING" },
+    { key: "date", label: "NIGHTS", value: "6 + 7 NOV 2026" },
   );
   pass.auxiliaryFields.push(
-    { key: "headliner", label: "HEADLINER", value: "ALAN DIXON" },
-    { key: "support", label: "SUPPORT", value: "GALLARDO + THE ÄCHE" },
+    { key: "headliner", label: "HEADLINER", value: "FRASER JONES" },
+    { key: "support", label: "LINE UP", value: "GALLARDO · THE ÁCHE · CANALES" },
   );
   pass.backFields.push(
     {
@@ -151,9 +151,9 @@ export async function createAppleWalletPass(guest: GuestPass) {
     },
     {
       key: "eventDetails",
-      label: "MEMBERS' NIGHT",
+      label: "GRAND OPENING",
       value:
-        "Saturday, October 17, 2026 · 10:00 PM\nAlan Dixon\nSupport: Gallardo + The Äche",
+        "Friday, November 6 & Saturday, November 7, 2026 · 10:00 PM\nFraser Jones\nGallardo | The Áche | Canales\nPresented with Don Julio",
     },
     {
       key: "privileges",

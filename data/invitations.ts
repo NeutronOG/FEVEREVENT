@@ -12,7 +12,8 @@ export type Invitation = {
   complimentaryShots: number;
   eventTitle: string;
   headliner: string;
-  supportAct: string;
+  supportActs: string[];
+  presentedWith: string;
 };
 
 export const invitations: Record<string, Invitation> = {
@@ -21,16 +22,17 @@ export const invitations: Record<string, Invitation> = {
     firstName: "Agustín",
     fullName: "Agustín Pinaya",
     memberNumber: "0017",
-    eventDate: "Saturday, October 17, 2026",
+    eventDate: "Friday, November 6 & Saturday, November 7, 2026",
     eventTime: "10:00 PM",
     venueName: "FEVER",
     venueAddress: "Private location · Details reserved for invited guests",
     status: "pending",
     vipAccess: "lifetime",
     complimentaryShots: 2,
-    eventTitle: "FEVER Members' Night",
-    headliner: "Alan Dixon",
-    supportAct: "Gallardo + The Äche",
+    eventTitle: "FEVER Grand Opening",
+    headliner: "Fraser Jones",
+    supportActs: ["Gallardo", "The Áche", "Canales"],
+    presentedWith: "Don Julio",
   },
 };
 

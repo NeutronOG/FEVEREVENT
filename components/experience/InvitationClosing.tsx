@@ -58,7 +58,7 @@ export function InvitationClosing({
         <div className="preaccept-details" id="closing-details">
           <span>{invitation.eventDate}</span>
           <span>{invitation.eventTime}</span>
-          <span>MEMBERS&apos; NIGHT · LOCATION RELEASED UPON ACTIVATION</span>
+          <span>GRAND OPENING · LOCATION RELEASED UPON ACTIVATION</span>
         </div>
       )}
     </section>

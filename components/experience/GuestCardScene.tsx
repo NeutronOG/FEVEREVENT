@@ -17,7 +17,7 @@ function Card({ invitation }: { invitation: Invitation }) {
   const [flipped, setFlipped] = useState(false);
   const [dragging, setDragging] = useState(false);
   const pointer = useRef({ x: 0, y: 0 });
-  const artwork = useTexture("/media/fever-anniversary-texture.webp");
+  const artwork = useTexture("/media/fever-grand-opening-texture.webp");
 
   useFrame((state, delta) => {
     if (!group.current) return;

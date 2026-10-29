@@ -8,7 +8,7 @@ export function GuestCardReveal({ invitation }: { invitation: Invitation }) {
   return (
     <section className="card-reveal-section">
       <div className="section-eyebrow">
-        <span>MEMBERSHIP EDITION</span>
+        <span>GRAND OPENING EDITION</span>
         <span>ISSUED {new Date().getFullYear()}</span>
       </div>
       <motion.div

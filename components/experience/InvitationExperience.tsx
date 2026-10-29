@@ -136,7 +136,7 @@ export function InvitationExperience({
           <StorytellingSection />
           <InvitationLetter />
           <PrivilegesSection />
-          <ExclusiveEventSequence />
+          <ExclusiveEventSequence invitation={personalizedInvitation} />
           <InvitationClosing
             accepted={accepted}
             invitation={personalizedInvitation}

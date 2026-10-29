@@ -6,7 +6,7 @@ const paragraphs = [
   "To someone we remember.",
   "You have never been just another name on the list. You showed up, came back and brought the kind of energy that changes a room.",
   "FEVER Membership is our way of recognizing that. Not as a promotion, but as a thank you reserved for the people who have become part of our story.",
-  "Your place is no longer something you need to ask for. It is yours — every visit, every night, from here on out.",
+  "Your place is no longer something you need to ask for. It is yours — starting with our Grand Opening, and every night after.",
 ];
 
 export function InvitationLetter() {
